@@ -1,0 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_game.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/29 15:17:39 by aamajane          #+#    #+#             */
+/*   Updated: 2022/10/10 15:06:43 by aamajane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/cub3D.h"
+
+void	create_game(t_data *data)
+{
+	data->mlx = mlx_init();
+	if (!data->mlx)
+		puterror("Failed to initialize mlx");
+	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
+	create_images(data);
+	images_path(data);
+	init_images(data, TILE_SIZE);
+	init_variables(data);
+	player_data(&data->player, data->elm.map);
+	sprites_data(&data->sprite, data->elm.map);
+	random_wall(&data->elm.map);
+	mlx_hook(data->win, 2, 0, key_press, data);
+	mlx_hook(data->win, 3, 0, key_release, data);
+	mlx_hook(data->win, 6, 0, mouse_move, data);
+	mlx_hook(data->win, 17, 0, close_win, data);
+	mlx_loop_hook(data->mlx, render_frame, data);
+	mlx_loop(data->mlx);
+}
+
+void	create_images(t_data *data)
+{
+	data->main_img.addr = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	data->main_img.buffer = (int *)mlx_get_data_addr(data->main_img.addr, \
+											&data->main_img.bits_per_pixel, \
+											&data->main_img.line_length, \
+											&data->main_img.endian);
+	data->main_img.line_length /= 4;
+	data->minimap.addr = mlx_new_image(data->mlx, \
+											MINIMAP_WIDTH, MINIMAP_HEIGHT);
+	data->minimap.buffer = (int *)mlx_get_data_addr(data->minimap.addr, \
+											&data->minimap.bits_per_pixel, \
+											&data->minimap.line_length, \
+											&data->minimap.endian);
+	data->minimap.line_length /= 4;
+}
+
+void	init_variables(t_data *data)
+{
+	data->door.entre = 0;
+	data->door.is_open = 0;
+	data->door.render = 0;
+	data->door.index = 0;
+	data->door.timer = 0;
+}

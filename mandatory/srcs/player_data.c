@@ -12,6 +12,15 @@
 
 #include "../includes/cub3D.h"
 
+/*
+* 1. initialize the player position
+* 2. initialize the player direction
+* 3. initialize field of view
+* 4. initialize the player speed
+* 5. initialize the player rotation speed
+* 6. initialize the player rotation direction
+*/
+
 void	player_data(t_player *player, char **map)
 {
 	double	start_angle;
@@ -20,7 +29,7 @@ void	player_data(t_player *player, char **map)
 	player->rot_angle = degree_to_radian(start_angle);
 	player->fov_angle = degree_to_radian(60);
 	player->rot_speed = degree_to_radian(2);
-	player->mov_speed = 2;
+	player->mov_speed = NORMAL_MODE;
 	player->rot_direction = 0;
 	player->mov_direction = 0;
 }

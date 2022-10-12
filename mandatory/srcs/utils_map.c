@@ -42,6 +42,10 @@ int	map_height(char **map)
 	return (height);
 }
 
+/*
+* check if the map is surrounded by walls 
+*/
+
 int	map_has_wall_at(t_data *data, double x, double y)
 {
 	int	grid_x;

@@ -12,6 +12,10 @@
 
 #include "../includes/cub3D.h"
 
+/*
+* check if ray is facing up or down and if ray is facing left or right
+*/
+
 int	ray_facing_down(double angle)
 {
 	if (angle > 0 && angle < M_PI)

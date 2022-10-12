@@ -12,6 +12,13 @@
 
 #include "../includes/cub3D.h"
 
+/*
+* 1. Check if the file is a .cub file
+* 2. Check if the file is valid
+* 3. Check if the file is well formatted
+* 4. create a map
+*/
+
 void	checker(t_elm *elm, char *arg)
 {
 	char	**tmp_elm;
@@ -61,6 +68,10 @@ void	check_elements(t_elm *elm, t_var *var, char **tmp_elm)
 	free(count);
 	check_map(elm->map);
 }
+
+/*
+* check colors and return an array of 3 int (r, g, b)
+*/
 
 int	*check_color(t_var *var, char *str)
 {

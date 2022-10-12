@@ -74,6 +74,7 @@ void	sprite_projection(t_data *data, t_sprite *sprite)
 	sprite->dist_from_top = (sprite->size - WIN_HEIGHT) / 2;
 }
 
+
 void	sprite_rendering(t_data *data, t_sprite *sprite, t_img sprite_img)
 {
 	int	x;
@@ -106,11 +107,13 @@ void	sprite_drawing(t_data *data, t_sprite *sprite, t_img sprite_img, int x)
 	{
 		offset_y = (y + sprite->dist_from_top) * \
 					((double)TILE_SIZE / sprite->size);
-		index = (y * data->main_img.line_length) + x;
+		index = (y * data->main_img.line_length)  + x;
 		offset_index = (offset_y * sprite_img.line_length) + offset_x;
 		if (sprite->distance < data->rays[x].distance && \
 			sprite_img.buffer[offset_index] != sprite_img.buffer[0])
 		{
+			//printf("SEGV ?\n");
+			//data->main_img.buffer[index] = sprite_img.buffer[offset_index];
 			data->main_img.buffer[index] = \
 					increase_color_intensity(sprite->distance, \
 											sprite_img.buffer[offset_index]);

@@ -12,6 +12,10 @@
 
 #include "../includes/cub3D.h"
 
+/*
+* Read file content
+*/
+
 char	**read_file(char *arg)
 {
 	char	**file;

@@ -94,16 +94,94 @@ void	menu(t_data *g)
 	win = g->win;
 	//frame = (char *) malloc(sizeof(char) * (ft_strlen("FPS : ") + 3));
 	//frame = ft_strjoin("FPS : ", ft_itoa(g->max_frames));
-	mlx_string_put(mlx, win, SCREEN_POS, add += 15, WHITE, "Controls :");
+	mlx_string_put(mlx, win, SCREEN_POS + 50, add += 15, WHITE, "Controls :");
 	mlx_string_put(mlx, win, SCREEN_POS, add += 15, WHITE, "Move [W] [A] [S] [D]");
 	mlx_string_put(mlx, win, SCREEN_POS, add += 15, WHITE, "Quit [ESC]");
 	mlx_string_put(mlx, win, SCREEN_POS, add += 15, WHITE, "Look [<-] [->]");
 	mlx_string_put(mlx, win, SCREEN_POS, add += 15, WHITE, "Run [SHIFT]");
-	mlx_string_put(mlx, win, SCREEN_POS, add += 15, WHITE, "Open Door [ENTER]");
+	mlx_string_put(mlx, win, SCREEN_POS, add += 15, WHITE, "Shoot [x]");
+	mlx_string_put(mlx, win, 135, add += 605, WHITE, "health");
 	//mlx_string_put(mlx, win, SCREEN_POS, add += 15, WHITE, frame);
 	//free(frame);
 	//if (frame != NULL)
 		//printf("NOT FREED\n");
+}
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	int index;
+
+	(void) y;
+	//while (y < WIN_HEIGHT)
+	//{
+		index = (y * data->main_img.line_length) + x;
+		data->main_img.buffer[index] = color;
+	//	y++;
+//	}
+}
+
+
+void	draw_square(t_data *g, int *coord, int sidelen, int color)
+{
+	int	x;
+	int	y;
+
+	y = coord[1];
+	while (y < coord[1] + sidelen)
+	{
+		x = coord[0];
+		while (x < coord[0] + sidelen)
+		{
+			my_mlx_pixel_put(g, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_square_middle_screen(t_data *g)
+{
+	int side_len;
+	int coordinates[2];
+
+	side_len = 8;
+	coordinates[0] = WIN_WIDTH / 2 - side_len / 2;
+	coordinates[1] = WIN_HEIGHT / 2 - side_len / 2;
+	draw_square(g, coordinates, side_len, 0x00FF0000);
+}
+
+void	draw_rectangle(t_data *g, int *coord, int width, int height, int color)
+{
+	int	x;
+	int	y;
+
+	y = coord[1];
+	while (y < coord[1] + height)
+	{
+		x = coord[0];
+		while (x < coord[0] + width)
+		{
+			my_mlx_pixel_put(g, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_health_bar(t_data *g)
+{
+	int side_len;
+	int coordinates[2];
+
+	side_len = 10;
+	coordinates[0] = 10;
+	coordinates[1] = 700;
+	draw_rectangle(g, coordinates, 320, 14, 0x0000FF00);
+}
+
+void health_bar(t_data *g)
+{
+	draw_health_bar(g);
 }
 
 int	render_frame(t_data *data)
@@ -120,6 +198,8 @@ int	render_frame(t_data *data)
 	render_sprites_projection(data);
 	if (data->door.render)
 		render_door(data);
+	health_bar(data);
+	draw_square_middle_screen(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->main_img.addr, 0, 0);
 	render_minimap(data);
 	menu(data);

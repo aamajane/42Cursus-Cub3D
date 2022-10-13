@@ -66,7 +66,7 @@ void	checker(t_elm *elm, char *arg)
 	{
 		//write(2, "hi\n", 2);
 		free(tmp);
-		exit(puterror("Error\nInvalid file extension"));
+		exit(puterror("Invalid file extension"));
 	}
 	if (ft_strncmp(tmp, "buc.", 4) != 0x0)
 	{

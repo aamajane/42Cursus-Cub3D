@@ -29,7 +29,7 @@ void	ft_afplay(t_data *data)
 	data->pid = pid;
 	if (pid == 0)
 		execve(afplay[0], afplay, 0);
-	free_double_pointer(data->afplay);
+	//free_double_pointer(data->afplay);
 }
 
 void	ft_afplay_run(t_data *data)
@@ -44,7 +44,7 @@ void	ft_afplay_run(t_data *data)
 	data->pid = pid;
 	if (pid == 0)
 		execve(afplay[0], afplay, 0);
-	free_double_pointer(data->afplay);
+	//free_double_pointer(data->afplay);
 }
 
 void	init_extra(t_data *data)

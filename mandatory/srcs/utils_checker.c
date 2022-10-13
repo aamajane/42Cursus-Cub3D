@@ -6,15 +6,11 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 15:29:52 by aamajane          #+#    #+#             */
-/*   Updated: 2022/09/25 17:54:20 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:00:32 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-/*
-* Read file content
-*/
 
 char	**read_file(char *arg)
 {
@@ -65,13 +61,6 @@ void	separate_file_elements(t_elm *elm, char ***tmp_elm, char **file)
 	elm->map[j] = NULL;
 }
 
-void	skip_spaces(char *str, int *i)
-{
-	*i = 0;
-	while (str[*i] == ' ')
-		(*i)++;
-}
-
 int	is_color(char *str, int **count)
 {
 	if (!ft_strncmp(str, "F ", 2))
@@ -110,4 +99,20 @@ int	is_direction(char *str, int **count)
 		return (WEST);
 	}
 	return (-1);
+}
+
+int	*copy_rgb_color(char **tab)
+{
+	int	*rgb;
+	int	i;
+
+	rgb = (int *)malloc(sizeof(int) * 3);
+	i = -1;
+	while (tab[++i])
+	{
+		rgb[i] = ft_atoi(tab[i]);
+		if (rgb[i] < 0 || rgb[i] > 255)
+			exit(puterror("Invalid color"));
+	}
+	return (rgb);
 }

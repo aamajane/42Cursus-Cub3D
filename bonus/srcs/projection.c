@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 21:04:20 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/10 14:59:03 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 02:20:58 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	light_timer(t_data *data)
 	i = -1;
 	while (++i < NUM_LIGHTS)
 	{
-		if (data->lights[i].timer > 20)
+		if (data->lights[i].timer > 30)
 		{
 			data->lights[i].index++;
 			if (data->lights[i].index == NUM_LIGHTNING)

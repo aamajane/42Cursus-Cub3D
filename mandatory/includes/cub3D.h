@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/11 15:50:51 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:00:40 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,12 @@
 # include <fcntl.h>
 # include <math.h>
 # include <mlx.h>
-# include <signal.h>
 
 # define TILE_SIZE	64
 # define WIN_WIDTH	1280
 # define WIN_HEIGHT 720
 # define NUM_RAYS	WIN_WIDTH
 # define NUM_IMG	4
-# define FACTOR		0.1
-
-# define WHITE		0x00FFFFFF
-# define SCREEN_POS	1050	
 
 # define W_KEY		13
 # define S_KEY		1
@@ -40,9 +35,6 @@
 # define RIGHI_KEY	124
 # define LEFT_KEY	123
 # define ESC_KEY	53
-# define ENTRE_KEY	36
-# define SPACE_KEY	49
-# define NORMAL_MODE 2
 
 # define NORTH		0
 # define SOUTH		1
@@ -66,15 +58,6 @@ typedef struct s_column
 	int	facing_side;
 }				t_column;
 
-/*
-* - intercept and yintercept are the coordinates of the first grid 
-*   intersection (the	* one closest to the player)
-* xstep and ystep are the increments to get to the next grid 
-* intersection (either	* +1 or -1) depending on the direction of the ray.
-* - xstep and ystep are also used to determine the direction of the ray 
-*   (up, down,	* left or right)
-*/
-
 typedef struct s_intercept
 {
 	double	xintercept;
@@ -82,14 +65,6 @@ typedef struct s_intercept
 	double	xstep;
 	double	ystep;
 }				t_intercept;
-
-/*
-* angle = angle of the ray
-* distance = distance from the player to the wall
-* wall_hit_x = x coordinate of the wall hit
-* wall_hit_y = y coordinate of the wall hit
-* vertical_hit = 1 if the ray hit a vertical wall, 0 otherwise
-*/
 
 typedef struct s_hit
 {
@@ -117,14 +92,6 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
-/*
-* - x and y position of the player
-* - rot_angle is the angle of the ray that is casted from the player
-* - move_speed is the speed at which the player moves
-* - rot_direc is the direction in which the player rotates
-* - move_direc is the direction in which the player moves
-*/
-
 typedef struct player
 {
 	double	x;
@@ -137,12 +104,6 @@ typedef struct player
 	int		rot_direction;
 	int		mov_direction;
 }				t_player;
-
-/*
-* - path is an array of strings that contains the paths to the textures
-* - rgb is the array that contains the rgb values of the floor and ceiling
-* - width and height are the width and height of the map
-*/
 
 typedef struct s_elm
 {
@@ -165,12 +126,7 @@ typedef struct s_data
 	t_img		imgs[NUM_IMG];
 	t_ray		rays[NUM_RAYS];
 	t_column	column[NUM_RAYS];
-	int			pid;
 	double		dist_proj_plane;
-	int			sound;
-	int			frames;
-	int			max_frames;
-	int			min_frames;
 }				t_data;
 
 // checker.c
@@ -240,33 +196,28 @@ void	free_double_pointer(char **str);
 // utils_checker.c
 char	**read_file(char *arg);
 void	separate_file_elements(t_elm *elm, char ***tmp_elm, char **file);
-void	skip_spaces(char *str, int *i);
 int		is_color(char *str, int **count);
 int		is_direction(char *str, int **count);
+int		*copy_rgb_color(char **tab);
 
 // utils_map.c
 int		map_width(char **map);
 int		map_height(char **map);
 int		map_has_wall_at(t_data *data, double x, double y);
 int		is_inside_map(t_data *data, double x, double y);
+void	skip_spaces(char *str, int *i);
 
 // utils_math.c
 double	distance_between_points(double x1, double y1, double x2, double y2);
 double	degree_to_radian(double angle);
 void	normalize_angle(double *angle);
 int		create_trgb(int transparency, int red, int green, int blue);
+int		commas_number(char *str);
 
 // get_next_line.c
 char	*get_next_line(int fd);
 void	get_file(int fd, char **stock, char **line, char **buf);
 char	*get_line(char **stock, char **line);
 void	get_free(char **str);
-
-/*
-* Music :
-*/
-
-void	ft_afplay_music(t_data *data);
-void	ft_afplay_run(t_data *data);
 
 #endif

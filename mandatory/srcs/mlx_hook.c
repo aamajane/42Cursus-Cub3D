@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:55:44 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/11 15:53:37 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/10/08 22:34:33 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	key_release(int keycode, t_data *data)
 {
 	if (keycode == W_KEY || keycode == A_KEY || \
 		keycode == S_KEY || keycode == D_KEY || \
-		keycode == UP_KEY || keycode == DOWN_KEY )
+		keycode == UP_KEY || keycode == DOWN_KEY)
 		data->player.mov_direction = 0;
 	else if (keycode == RIGHI_KEY || keycode == LEFT_KEY)
 		data->player.rot_direction = 0;

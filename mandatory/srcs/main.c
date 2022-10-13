@@ -12,20 +12,6 @@
 
 #include "../includes/cub3D.h"
 
-/*
-* 1. Check if the file is a .cub file
-* 2. Check if the file is valid
-* 3. Check if the file is well formatted
-* 4. create a map
-* 5. create a window
-* 6. create a player
-* 7. create a ray
-* 8. create a texture
-* 9. create a sprite
-* 10. create a minimap
-* 11. raycasting
-*/
-
 int	main(int ac, char **av)
 {
 	t_data	data;

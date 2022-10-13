@@ -6,7 +6,7 @@
 #    By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 15:10:36 by aamajane          #+#    #+#              #
-#    Updated: 2022/10/10 23:05:34 by aamajane         ###   ########.fr        #
+#    Updated: 2022/10/13 15:21:08 by aamajane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS_B	=	bonus/srcs/main.c \
 			bonus/srcs/create_game.c \
 			bonus/srcs/images_path.c \
 			bonus/srcs/init_images.c \
+			bonus/srcs/init_images_extra.c \
 			bonus/srcs/player_data.c \
 			bonus/srcs/sprites_data.c \
 			bonus/srcs/mlx_hook.c \
@@ -52,7 +53,8 @@ SRCS_B	=	bonus/srcs/main.c \
 			bonus/srcs/projection.c \
 			bonus/srcs/door_checker.c \
 			bonus/srcs/door_rendering.c \
-			bonus/srcs/sprite.c \
+			bonus/srcs/sprites_rendering.c \
+			bonus/srcs/weapon_rendering.c \
 			bonus/srcs/minimap.c \
 			bonus/srcs/utils_map.c \
 			bonus/srcs/utils_math.c \
@@ -62,7 +64,7 @@ OBJS_B	=	$(SRCS_B:.c=.o)
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror -O3 #-fsanitize=address -g3
+CFLAGS	=	-Wall -Wextra -Werror
 
 MLX		=	-lmlx -framework OpenGL -framework AppKit
 

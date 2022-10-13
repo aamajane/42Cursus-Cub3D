@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:43:24 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/10 22:15:18 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 01:57:58 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_images(t_data *data, int size)
 	init_lights_images(data, size);
 	init_door_images(data, size);
 	init_letters_images(data, size);
+	init_weapon_images(data);
 }
 
 void	init_walls_images(t_data *data, int size)

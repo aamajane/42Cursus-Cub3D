@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 15:17:39 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/10 15:06:43 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 02:36:33 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,19 @@ void	create_images(t_data *data)
 
 void	init_variables(t_data *data)
 {
-	data->door.entre = 0;
 	data->door.is_open = 0;
 	data->door.render = 0;
 	data->door.index = 0;
 	data->door.timer = 0;
+	data->weapon.width = 800;
+	data->weapon.height = 615;
+	data->weapon.x = WIN_WIDTH - data->weapon.width;
+	data->weapon.y = WIN_HEIGHT - data->weapon.height;
+	data->weapon.bullets = NUM_BULLETS;
+	data->weapon.render_shooting = 0;
+	data->weapon.render_reloading = 0;
+	data->weapon.shooting_index = 0;
+	data->weapon.reloading_index = 0;
+	data->weapon.shooting_timer = 0;
+	data->weapon.reloading_timer = 0;
 }

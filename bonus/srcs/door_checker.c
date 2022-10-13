@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 16:33:58 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/10 23:05:15 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/12 22:04:21 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_door_near_player(t_data *data)
 	int		i;
 
 	i = -1;
-	while (++i < NUM_RAYS)
+	while (++i < NUM_RAYS && !data->door.is_open && data->door.render != 2)
 	{
 		ray_angle = data->player.rot_angle + \
 					(atan((i - (NUM_RAYS / 2)) / data->dist_proj_plane));
@@ -28,16 +28,13 @@ void	check_door_near_player(t_data *data)
 		data->rays[i].angle = ray_angle;
 		door_horz_intercept(&horizontal, data, ray_angle);
 		door_vert_intercept(&vertical, data, ray_angle);
-		if (data->door.is_open)
-			break ;
 	}
-	if (data->door.is_open && !door_distance(data, ray_angle, \
-								data->door.xintercept, data->door.yintercept))
+	if (data->door.is_open && \
+		distance_between_points(data->player.x, data->player.y, \
+		data->door.xintercept, data->door.yintercept) > 1.5 * TILE_SIZE)
 	{
 		data->door.is_open = 0;
 		data->door.render = 2;
-		if (data->door.index == NUM_OP_DOORS)
-			data->door.index--;
 	}
 }
 
@@ -53,8 +50,7 @@ void	door_horz_intercept(t_hit *horizontal, t_data *data, double ray_angle)
 	while (is_inside_map(data, horz.xintercept, horz.yintercept))
 	{
 		horz.c = map_content(data, horz.xintercept, horz.yintercept, TILE_SIZE);
-		if (horz.c == 'd' && data->door.entre && \
-			door_distance(data, ray_angle, horz.xintercept, horz.yintercept))
+		if (horz.c == 'd' && door_facing_player(data, ray_angle))
 		{
 			data->door.xintercept = horz.xintercept;
 			data->door.yintercept = horz.yintercept;
@@ -63,7 +59,7 @@ void	door_horz_intercept(t_hit *horizontal, t_data *data, double ray_angle)
 			data->door.render = 1;
 			data->elm.map[(int)floor(data->door.yintercept / TILE_SIZE)] \
 						[(int)floor(data->door.xintercept / TILE_SIZE)] = '0';
-			break ;
+			return ;
 		}
 		horz.xintercept += horz.xstep;
 		horz.yintercept += horz.ystep;
@@ -82,8 +78,7 @@ void	door_vert_intercept(t_hit *vertical, t_data *data, double ray_angle)
 	while (is_inside_map(data, vert.xintercept, vert.yintercept))
 	{
 		vert.c = map_content(data, vert.xintercept, vert.yintercept, TILE_SIZE);
-		if (vert.c == 'd' && data->door.entre && \
-			door_distance(data, ray_angle, vert.xintercept, vert.yintercept))
+		if (vert.c == 'd' && door_facing_player(data, ray_angle))
 		{
 			data->door.xintercept = vert.xintercept;
 			data->door.yintercept = vert.yintercept;
@@ -92,20 +87,29 @@ void	door_vert_intercept(t_hit *vertical, t_data *data, double ray_angle)
 			data->door.render = 1;
 			data->elm.map[(int)floor(data->door.yintercept / TILE_SIZE)] \
 						[(int)floor(data->door.xintercept / TILE_SIZE)] = '0';
-			break ;
+			return ;
 		}
 		vert.xintercept += vert.xstep;
 		vert.yintercept += vert.ystep;
 	}
 }
 
-int	door_distance(t_data *data, double ray_angle, double x, double y)
+int	door_facing_player(t_data *data, double ray_angle)
 {
-	double	distance;
+	double	x;
+	double	y;
+	double	s;
 
-	distance = cos(ray_angle - data->player.rot_angle) * \
-				distance_between_points(data->player.x, data->player.y, x, y);
-	if (distance <= 1.5 * TILE_SIZE)
+	x = data->player.x;
+	y = data->player.y;
+	s = TILE_SIZE;
+	if (ray_facing_up(ray_angle) && map_content(data, x, y - s, s) == 'd')
+		return (1);
+	if (ray_facing_down(ray_angle) && map_content(data, x, y + s, s) == 'd')
+		return (1);
+	if (ray_facing_left(ray_angle) && map_content(data, x - s, y, s) == 'd')
+		return (1);
+	if (ray_facing_right(ray_angle) && map_content(data, x + s, y, s) == 'd')
 		return (1);
 	return (0);
 }

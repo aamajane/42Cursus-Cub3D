@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:38:20 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/05 23:22:09 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:11:47 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,17 @@ int	create_trgb(int transparency, int red, int green, int blue)
 	trgb += green << 8;
 	trgb += blue;
 	return (trgb);
+}
+
+int	commas_number(char *str)
+{
+	int	commas_num;
+	int	i;
+
+	commas_num = 0;
+	i = -1;
+	while (str[++i])
+		if (str[i] == ',')
+			commas_num++;
+	return (commas_num);
 }

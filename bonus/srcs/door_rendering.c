@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 23:02:58 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/10 23:50:03 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/12 21:35:48 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	render_door(t_data *data)
 {
 	data->door.sprite.x = data->door.xintercept;
-	data->door.sprite.y = data->door.yintercept;
 	if (!data->door.vertical_hit)
 		data->door.sprite.x = (floor(data->door.xintercept / TILE_SIZE) \
 							* TILE_SIZE) + (TILE_SIZE / 2);
-	else
+	data->door.sprite.y = data->door.yintercept;
+	if (data->door.vertical_hit)
 		data->door.sprite.y = (floor(data->door.yintercept / TILE_SIZE) \
 							* TILE_SIZE) + (TILE_SIZE / 2);
 	data->door.sprite.angle = data->player.rot_angle - \
@@ -43,7 +43,10 @@ void	door_opening_timer(t_data *data)
 	{
 		data->door.index++;
 		if (data->door.index == NUM_OP_DOORS)
+		{
+			data->door.index--;
 			data->door.render = 0;
+		}
 		data->door.timer = 0;
 	}
 	data->door.timer++;
@@ -54,8 +57,9 @@ void	door_closing_timer(t_data *data)
 	if (data->door.timer > 1)
 	{
 		data->door.index--;
-		if (data->door.index == 0)
+		if (data->door.index == -1)
 		{
+			data->door.index++;
 			data->door.render = 0;
 			data->elm.map[(int)floor(data->door.yintercept / TILE_SIZE)] \
 					[(int)floor(data->door.xintercept / TILE_SIZE)] = 'd';

@@ -6,78 +6,20 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:42:50 by aamajane          #+#    #+#             */
-/*   Updated: 2022/09/25 17:58:17 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:01:07 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-void	ft_strrev(char *str)
-{
-	int		i;
-	int		j;
-	char	tmp;
-
-	i = 0;
-	j = ft_strlen(str) - 1;
-	while (i < j)
-	{
-		tmp = str[i];
-		str[i] = str[j];
-		str[j] = tmp;
-		i++;
-		j--;
-	}
-}
-
-char	*ft_strdupl(char *str)
-{
-	char	*dup;
-	int		i;
-
-	i = 0;
-	dup = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
-	if (!dup)
-		return (NULL);
-	while (str[i])
-	{
-		dup[i] = str[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
-}
-
-/*
-* 1. Check if the file is a .cub file
-* 2. Check if the file is valid
-* 3. Check if the file is well formatted
-* 4. create a map
-*/
 
 void	checker(t_elm *elm, char *arg)
 {
 	char	**tmp_elm;
 	char	**file;
 	t_var	var;
-	char	*tmp;
 
-	tmp = ft_strdupl(arg);
-
-	ft_strrev(tmp);
-	//Printf("tmp = %s\n", tmp);
-	//printf("%c\n", tmp[4]);
-	if (tmp[3] == '.' && tmp[4] == '/')
-	{
-		//write(2, "hi\n", 2);
-		free(tmp);
-		exit(puterror("Invalid file extension"));
-	}
-	if (ft_strncmp(tmp, "buc.", 4) != 0x0)
-	{
-		free(tmp);
+	if (ft_strncmp(arg + ft_strlen(arg) - 4, ".cub", 4) || ft_strlen(arg) <= 4)
 		exit(puterror("file extension must be .cub"));
-	}
 	file = read_file(arg);
 	separate_file_elements(elm, &tmp_elm, file);
 	free_double_pointer(file);
@@ -120,13 +62,11 @@ void	check_elements(t_elm *elm, t_var *var, char **tmp_elm)
 	check_map(elm->map);
 }
 
-/*
-* check colors and return an array of 3 int (r, g, b)
-*/
-
 int	*check_color(t_var *var, char *str)
 {
 	skip_spaces(str, &var->i);
+	if (commas_number(str + var->i) != 2)
+		exit(puterror("Invalid color format"));
 	var->tab = ft_split(str + var->i, ',');
 	var->i = -1;
 	while (var->tab[++var->i])
@@ -141,14 +81,7 @@ int	*check_color(t_var *var, char *str)
 	}
 	if (var->i != 3)
 		exit(puterror("Invalid color"));
-	var->rgb = (int *)malloc(sizeof(int) * 3);
-	var->i = -1;
-	while (var->tab[++var->i])
-	{
-		var->rgb[var->i] = ft_atoi(var->tab[var->i]);
-		if (var->rgb[var->i] < 0 || var->rgb[var->i] > 255)
-			exit(puterror("Invalid color"));
-	}
+	var->rgb = copy_rgb_color(var->tab);
 	free_double_pointer(var->tab);
 	return (var->rgb);
 }
@@ -162,7 +95,8 @@ char	*check_path(char *str)
 
 	skip_spaces(str, &i);
 	path = ft_strdup(str + i);
-	if (ft_strncmp(path + ft_strlen(path) - 4, ".xpm", 4))
+	if (ft_strncmp(path + ft_strlen(path) - 4, ".xpm", 4) || \
+		ft_strlen(path) <= 4)
 		exit(puterror("Invalid path: Image extension must be .xpm"));
 	fd = open(path, O_RDONLY);
 	if (fd == -1)

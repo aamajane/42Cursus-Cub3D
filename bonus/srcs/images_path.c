@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 00:03:19 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/10 23:11:23 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/12 23:19:36 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,35 @@ void	images_path_extra_2(t_data *data)
 	data->door.op_imgs[4].path = "./bonus/assets/door_opening_4.xpm";
 	data->door.op_imgs[5].path = "./bonus/assets/door_opening_5.xpm";
 	data->door.op_imgs[6].path = "./bonus/assets/door_opening_6.xpm";
+	data->weapon.holding.path = "./bonus/assets/weapon_holding.xpm";
+	data->weapon.reloading[0].path = "./bonus/assets/weapon_reloading_00.xpm";
+	data->weapon.reloading[1].path = "./bonus/assets/weapon_reloading_01.xpm";
+	data->weapon.reloading[2].path = "./bonus/assets/weapon_reloading_02.xpm";
+	data->weapon.reloading[3].path = "./bonus/assets/weapon_reloading_03.xpm";
+	data->weapon.reloading[4].path = "./bonus/assets/weapon_reloading_04.xpm";
+	data->weapon.reloading[5].path = "./bonus/assets/weapon_reloading_05.xpm";
+	data->weapon.reloading[6].path = "./bonus/assets/weapon_reloading_06.xpm";
+	data->weapon.reloading[7].path = "./bonus/assets/weapon_reloading_07.xpm";
+	data->weapon.reloading[8].path = "./bonus/assets/weapon_reloading_08.xpm";
+	data->weapon.reloading[9].path = "./bonus/assets/weapon_reloading_09.xpm";
+	data->weapon.reloading[10].path = "./bonus/assets/weapon_reloading_10.xpm";
+	data->weapon.reloading[11].path = "./bonus/assets/weapon_reloading_11.xpm";
+	data->weapon.reloading[12].path = "./bonus/assets/weapon_reloading_12.xpm";
+	data->weapon.reloading[13].path = "./bonus/assets/weapon_reloading_13.xpm";
+	data->weapon.reloading[14].path = "./bonus/assets/weapon_reloading_14.xpm";
+	data->weapon.reloading[15].path = "./bonus/assets/weapon_reloading_15.xpm";
+	images_path_extra_3(data);
+}
+
+void	images_path_extra_3(t_data *data)
+{
+	data->weapon.shooting[0].path = "./bonus/assets/weapon_shooting_0.xpm";
+	data->weapon.shooting[1].path = "./bonus/assets/weapon_shooting_1.xpm";
+	data->weapon.shooting[2].path = "./bonus/assets/weapon_shooting_2.xpm";
+	data->weapon.shooting[3].path = "./bonus/assets/weapon_shooting_3.xpm";
+	data->weapon.shooting[4].path = "./bonus/assets/weapon_shooting_4.xpm";
+	data->weapon.shooting[5].path = "./bonus/assets/weapon_shooting_5.xpm";
+	data->weapon.shooting[6].path = "./bonus/assets/weapon_shooting_6.xpm";
+	data->weapon.shooting[7].path = "./bonus/assets/weapon_shooting_7.xpm";
+	data->weapon.shooting[8].path = "./bonus/assets/weapon_shooting_8.xpm";
 }

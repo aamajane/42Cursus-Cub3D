@@ -12,10 +12,6 @@
 
 #include "../includes/cub3D.h"
 
-/*
-* update the player position
-*/
-
 void	player_update(t_data *data)
 {
 	if (data->player.mov_direction != 0)
@@ -23,10 +19,6 @@ void	player_update(t_data *data)
 	if (data->player.rot_direction != 0)
 		rotate_player(data);
 }
-
-/*
-* move the player in the direction he is facing and update the player position
-*/
 
 void	move_player(t_data *data)
 {
@@ -45,12 +37,6 @@ void	move_player(t_data *data)
 	data->player.x = player_mov * cos(player_rotaion_angle) + data->player.x;
 	data->player.y = player_mov * sin(player_rotaion_angle) + data->player.y;
 }
-
-/*
-* rotate the player to the left or to the right
-* depending on the player rotation direction
-* the player rotation direction is set in the key_pressed function
-*/
 
 void	rotate_player(t_data *data)
 {

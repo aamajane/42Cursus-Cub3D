@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 23:28:06 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 00:41:30 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@
 # define NUM_SHOOTING	9
 # define NUM_RELOADING	16
 # define NUM_BULLETS	10
+# define NUM_E_WALKING	4
+# define NUM_E_ATTACKS	2
+# define NUM_E_DYING	5
 # define NUM_RAYS		WIN_WIDTH
 
 # define MIN_WALL_NUM	1
@@ -146,24 +149,6 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
-typedef struct s_weapon
-{
-	t_img	holding;
-	t_img	shooting[NUM_SHOOTING];
-	t_img	reloading[NUM_RELOADING];
-	int		x;
-	int		y;
-	int		width;
-	int		height;
-	int		bullets;
-	int		render_shooting;
-	int		render_reloading;
-	int		shooting_index;
-	int		reloading_index;
-	int		shooting_timer;
-	int		reloading_timer;
-}				t_weapon;
-
 typedef struct s_sprite
 {
 	double	x;
@@ -177,6 +162,7 @@ typedef struct s_sprite
 	int		screen_x;
 	int		left_x;
 	int		right_x;
+	int		health;
 }				t_sprite;
 
 typedef struct s_gsprite
@@ -190,7 +176,15 @@ typedef struct s_gsprite
 typedef struct s_enemy
 {
 	t_gsprite	gsprite;
-	t_img		img;
+	t_img		walking[NUM_E_WALKING];
+	t_img		attacking[NUM_E_ATTACKS];
+	t_img		dying[NUM_E_DYING];
+	int			walking_index;
+	int			attacking_index;
+	int			dying_index;
+	int			walking_timer;
+	int			attacking_timer;
+	int			dying_timer;
 }				t_enemy;
 
 typedef struct s_light
@@ -213,6 +207,24 @@ typedef struct s_door
 	int			index;
 	int			timer;
 }				t_door;
+
+typedef struct s_weapon
+{
+	t_img	holding;
+	t_img	shooting[NUM_SHOOTING];
+	t_img	reloading[NUM_RELOADING];
+	int		x;
+	int		y;
+	int		width;
+	int		height;
+	int		bullets;
+	int		render_shooting;
+	int		render_reloading;
+	int		shooting_index;
+	int		reloading_index;
+	int		shooting_timer;
+	int		reloading_timer;
+}				t_weapon;
 
 typedef struct player
 {
@@ -273,16 +285,9 @@ void	images_path_extra_2(t_data *data);
 void	images_path_extra_3(t_data *data);
 
 // init_images.c
-void	init_images(t_data *data, int size);
-void	init_walls_images(t_data *data, int size);
-void	init_lights_images(t_data *data, int size);
-void	init_door_images(t_data *data, int size);
-void	init_letters_images(t_data *data, int size);
-
-// init_images_extra.c 
-void	init_weapon_images(t_data *data);
-void	init_weapon_images_extra(t_data *data, int width, int height, int i);
-void	init_enemy_images(t_data *data, int size);
+void	init_all_images(t_data *data, int size);
+void	init_all_images_extra(t_data *data, int size);
+void	init_image(t_data *data, t_img *img, int size);
 
 // player_data.c
 void	player_data(t_player *player, char **map);
@@ -348,6 +353,8 @@ void	door_closing_timer(t_data *data);
 // enemy_rendering.c
 void	enemy_data(t_gsprite *gsprite, char **map);
 void	render_enemy_projection(t_data *data);
+void	render_enemy(t_data *data, int i);
+void	enemy_timer(int *index, int *timer, int num);
 
 // sprite.c
 void	find_visible_sprites(t_data *data, t_gsprite *gsprite);
@@ -390,6 +397,7 @@ int		increase_color_intensity(double distance, int color);
 // utils_sprites.c
 int		sprites_number(char **map, char c);
 void	sprites_coordinates(t_sprite *sprites, char **map, char c);
+void	init_sprites_health(t_sprite *sprites, int sprites_num);
 
 // get_next_line.c
 char	*get_next_line(int fd);

@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 02:43:37 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 23:12:01 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 00:53:31 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	enemy_data(t_gsprite *gsprite, char **map)
 	gsprite->all = (t_sprite *)malloc(sizeof(t_sprite) * gsprite->all_num);
 	gsprite->visible = (t_sprite *)malloc(sizeof(t_sprite) * gsprite->all_num);
 	sprites_coordinates(gsprite->all, map, 'e');
+	init_sprites_health(gsprite->all, gsprite->all_num);
 }
 
 void	render_enemy_projection(t_data *data)
@@ -34,7 +35,16 @@ void	render_enemy_projection(t_data *data)
 			sprite_projection(data, &data->enemy.gsprite.visible[i]);
 		i = -1;
 		while (++i < data->enemy.gsprite.visible_num)
-			sprite_rendering(data, &data->enemy.gsprite.visible[i], \
-							data->enemy.img);
+			render_enemy(data, i);
 	}
+}
+
+void	render_enemy(t_data *data, int i)
+{
+	if (data->enemy.gsprite.visible[i].health > 0)
+		sprite_rendering(data, &data->enemy.gsprite.visible[i], \
+							data->enemy.walking[data->enemy.walking_index]);
+	else
+		sprite_rendering(data, &data->enemy.gsprite.visible[i], \
+							data->enemy.dying[data->enemy.dying_index]);
 }

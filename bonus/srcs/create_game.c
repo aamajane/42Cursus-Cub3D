@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 15:17:39 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 23:01:37 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 00:03:21 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	create_game(t_data *data)
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	create_images(data);
 	images_path(data);
-	init_images(data, TILE_SIZE);
+	init_all_images(data, TILE_SIZE);
 	init_variables(data);
 	player_data(&data->player, data->elm.map);
 	enemy_data(&data->enemy.gsprite, data->elm.map);
@@ -67,4 +67,10 @@ void	init_variables(t_data *data)
 	data->weapon.reloading_index = 0;
 	data->weapon.shooting_timer = 0;
 	data->weapon.reloading_timer = 0;
+	data->enemy.walking_index = 0;
+	data->enemy.attacking_index = 0;
+	data->enemy.dying_index = 0;
+	data->enemy.walking_timer = 0;
+	data->enemy.attacking_timer = 0;
+	data->enemy.dying_timer = 0;
 }

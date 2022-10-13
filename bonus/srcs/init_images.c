@@ -6,103 +6,63 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:43:24 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 22:12:27 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 23:59:27 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	init_images(t_data *data, int size)
-{
-	init_walls_images(data, size);
-	init_lights_images(data, size);
-	init_door_images(data, size);
-	init_letters_images(data, size);
-	init_weapon_images(data);
-	init_enemy_images(data, size);
-}
-
-void	init_walls_images(t_data *data, int size)
-{
-	int	i;
-
-	i = -1;
-	while (++i < NUM_WALLS)
-	{
-		data->walls[i].addr = mlx_xpm_file_to_image(data->mlx, \
-									data->walls[i].path, &size, &size);
-		data->walls[i].buffer = (int *)mlx_get_data_addr(\
-									data->walls[i].addr, \
-									&data->walls[i].bits_per_pixel, \
-									&data->walls[i].line_length, \
-									&data->walls[i].endian);
-		data->walls[i].line_length /= 4;
-	}
-}
-
-void	init_lights_images(t_data *data, int size)
+void	init_all_images(t_data *data, int size)
 {
 	int	i;
 	int	j;
 
 	i = -1;
+	while (++i < NUM_WALLS)
+		init_image(data, &data->walls[i], size);
+	i = -1;
 	while (++i < NUM_LIGHTS)
 	{
 		j = -1;
 		while (++j < NUM_LIGHTNING)
-		{
-			data->lights[i].imgs[j].addr = mlx_xpm_file_to_image(data->mlx, \
-								data->lights[i].imgs[j].path, &size, &size);
-			data->lights[i].imgs[j].buffer = (int *)mlx_get_data_addr(\
-								data->lights[i].imgs[j].addr, \
-								&data->lights[i].imgs[j].bits_per_pixel, \
-								&data->lights[i].imgs[j].line_length, \
-								&data->lights[i].imgs[j].endian);
-			data->lights[i].imgs[j].line_length /= 4;
-		}
-	}	
-}
-
-void	init_door_images(t_data *data, int size)
-{
-	int	i;
-
-	data->door.img.addr = mlx_xpm_file_to_image(data->mlx, \
-										data->door.img.path, &size, &size);
-	data->door.img.buffer = (int *)mlx_get_data_addr(\
-										data->door.img.addr, \
-										&data->door.img.bits_per_pixel, \
-										&data->door.img.line_length, \
-										&data->door.img.endian);
-	data->door.img.line_length /= 4;
-	i = -1;
-	while (++i < NUM_OP_DOORS)
-	{
-		data->door.op_imgs[i].addr = mlx_xpm_file_to_image(data->mlx, \
-									data->door.op_imgs[i].path, &size, &size);
-		data->door.op_imgs[i].buffer = (int *)mlx_get_data_addr(\
-										data->door.op_imgs[i].addr, \
-										&data->door.op_imgs[i].bits_per_pixel, \
-										&data->door.op_imgs[i].line_length, \
-										&data->door.op_imgs[i].endian);
-		data->door.op_imgs[i].line_length /= 4;
+			init_image(data, &data->lights[i].imgs[j], size);
 	}
-}
-
-void	init_letters_images(t_data *data, int size)
-{
-	int	i;
-
 	i = -1;
 	while (++i < NUM_LETTERS)
-	{
-		data->letters[i].addr = mlx_xpm_file_to_image(data->mlx, \
-										data->letters[i].path, &size, &size);
-		data->letters[i].buffer = (int *)mlx_get_data_addr(\
-										data->letters[i].addr, \
-										&data->letters[i].bits_per_pixel, \
-										&data->letters[i].line_length, \
-										&data->letters[i].endian);
-		data->letters[i].line_length /= 4;
-	}
+		init_image(data, &data->letters[i], size);
+	init_image(data, &data->weapon.holding, size);
+	i = -1;
+	while (++i < NUM_SHOOTING)
+		init_image(data, &data->weapon.shooting[i], size);
+	i = -1;
+	while (++i < NUM_RELOADING)
+		init_image(data, &data->weapon.reloading[i], size);
+	init_all_images_extra(data, size);
+}
+
+void	init_all_images_extra(t_data *data, int size)
+{
+	int	i;
+
+	init_image(data, &data->door.img, size);
+	i = -1;
+	while (++i < NUM_OP_DOORS)
+		init_image(data, &data->door.op_imgs[i], size);
+	i = -1;
+	while (++i < NUM_E_WALKING)
+		init_image(data, &data->enemy.walking[i], size);
+	i = -1;
+	while (++i < NUM_E_ATTACKS)
+		init_image(data, &data->enemy.attacking[i], size);
+	i = -1;
+	while (++i < NUM_E_DYING)
+		init_image(data, &data->enemy.dying[i], size);
+}
+
+void	init_image(t_data *data, t_img *img, int size)
+{
+	img->addr = mlx_xpm_file_to_image(data->mlx, img->path, &size, &size);
+	img->buffer = (int *)mlx_get_data_addr(img->addr, &img->bits_per_pixel, \
+									&img->line_length, &img->endian);
+	img->line_length /= 4;
 }

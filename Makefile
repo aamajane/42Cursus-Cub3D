@@ -6,7 +6,7 @@
 #    By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 15:10:36 by aamajane          #+#    #+#              #
-#    Updated: 2022/10/13 23:12:43 by aamajane         ###   ########.fr        #
+#    Updated: 2022/10/13 23:51:26 by aamajane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ SRCS_B	=	bonus/srcs/main.c \
 			bonus/srcs/create_game.c \
 			bonus/srcs/images_path.c \
 			bonus/srcs/init_images.c \
-			bonus/srcs/init_images_extra.c \
 			bonus/srcs/player_data.c \
 			bonus/srcs/mlx_hook.c \
 			bonus/srcs/render_frame.c \

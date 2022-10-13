@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:42:50 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 15:44:38 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:54:46 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ void	check_map(char **map)
 			if (is_player(map[i][j]))
 				count++;
 			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != ' ' && \
-				map[i][j] != 'd' && map[i][j] != 's' && !is_player(map[i][j]))
+				map[i][j] != 'd' && map[i][j] != 'e' && !is_player(map[i][j]))
 				exit(puterror("Invalid map"));
 			if ((map[i][j] == '0' || map[i][j] == 'd' || \
-				map[i][j] == 's' || is_player(map[i][j])) \
+				map[i][j] == 'e' || is_player(map[i][j])) \
 				&& (!i || !map[i + 1] || !j || !map[i][j + 1] || \
 				map[i][j + 1] == ' ' || (j && map[i][j - 1] == ' ')))
 				exit(puterror("Invalid map"));

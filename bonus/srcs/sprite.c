@@ -1,46 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprites_rendering.c                                :+:      :+:    :+:   */
+/*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 02:43:37 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/11 20:47:37 by aamajane         ###   ########.fr       */
+/*   Created: 2022/10/13 22:21:20 by aamajane          #+#    #+#             */
+/*   Updated: 2022/10/13 23:10:01 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	render_sprites_projection(t_data *data)
-{
-	int	i;
-
-	data->sprite.visible_num = 0;
-	find_visible_sprites(data, &data->sprite.visible_num);
-	if (data->sprite.visible_num)
-	{
-		sort_visible_sprites(data);
-		i = -1;
-		while (++i < data->sprite.visible_num)
-			sprite_projection(data, &data->sprite.visible[i]);
-		i = -1;
-		while (++i < data->sprite.visible_num)
-			sprite_rendering(data, &data->sprite.visible[i], data->sprite.img);
-	}
-}
-
-void	find_visible_sprites(t_data *data, int *visible_num)
+void	find_visible_sprites(t_data *data, t_gsprite *gsprite)
 {
 	double	anlge_sprite_player;
 	int		i;
 
 	i = -1;
-	while (++i < data->sprite.all_num)
+	while (++i < gsprite->all_num)
 	{
 		anlge_sprite_player = data->player.rot_angle - \
-								atan2(data->sprite.all[i].y - data->player.y, \
-										data->sprite.all[i].x - data->player.x);
+								atan2(gsprite->all[i].y - data->player.y, \
+										gsprite->all[i].x - data->player.x);
 		if (anlge_sprite_player > M_PI)
 			anlge_sprite_player -= 2 * M_PI;
 		if (anlge_sprite_player < -M_PI)
@@ -48,14 +30,39 @@ void	find_visible_sprites(t_data *data, int *visible_num)
 		anlge_sprite_player = fabs(anlge_sprite_player);
 		if (anlge_sprite_player < (data->player.fov_angle / 2) + EPSILON)
 		{
-			data->sprite.visible[*visible_num].x = data->sprite.all[i].x;
-			data->sprite.visible[*visible_num].y = data->sprite.all[i].y;
-			data->sprite.visible[*visible_num].angle = anlge_sprite_player;
-			data->sprite.visible[*visible_num].distance = \
-					distance_between_points(data->sprite.all[i].x, \
-					data->sprite.all[i].y, data->player.x, data->player.y);
-			(*visible_num)++;
+			gsprite->visible[gsprite->visible_num].x = gsprite->all[i].x;
+			gsprite->visible[gsprite->visible_num].y = gsprite->all[i].y;
+			gsprite->visible[gsprite->visible_num].angle = anlge_sprite_player;
+			gsprite->visible[gsprite->visible_num].distance = \
+					distance_between_points(gsprite->all[i].x, \
+					gsprite->all[i].y, data->player.x, data->player.y);
+			(gsprite->visible_num)++;
 		}
+	}
+}
+
+void	sort_visible_sprites(t_gsprite *gsprite)
+{
+	t_sprite	tmp;
+	int			i;
+	int			j;
+
+	i = 0;
+	while (i < gsprite->visible_num - 1)
+	{
+		j = i + 1;
+		while (j < gsprite->visible_num)
+		{
+			if (gsprite->visible[i].distance < \
+				gsprite->visible[j].distance)
+			{
+				tmp = gsprite->visible[i];
+				gsprite->visible[i] = gsprite->visible[j];
+				gsprite->visible[j] = tmp;
+			}
+			j++;
+		}
+		i++;
 	}
 }
 

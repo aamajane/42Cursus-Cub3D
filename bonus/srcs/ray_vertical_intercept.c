@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 22:14:05 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/12 21:22:45 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:55:18 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	vertical_intercept(t_hit *vertical, t_data *data, double ray_angle)
 	while (is_inside_map(data, vert.xintercept, vert.yintercept))
 	{
 		vert.c = map_content(data, vert.xintercept, vert.yintercept, TILE_SIZE);
-		if (vert.c != '0' && vert.c != 's')
+		if (vert.c != '0' && vert.c != 'e')
 		{
 			if (ray_facing_left(ray_angle))
 				vert.xintercept += 1;

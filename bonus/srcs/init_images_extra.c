@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 01:57:39 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 02:05:48 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:12:09 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,16 @@ void	init_weapon_images_extra(t_data *data, int width, int height, int i)
 									&data->weapon.reloading[i].endian);
 		data->weapon.reloading[i].line_length /= 4;
 	}
+}
+
+void	init_enemy_images(t_data *data, int size)
+{
+	data->enemy.img.addr = mlx_xpm_file_to_image(data->mlx, \
+								data->enemy.img.path, &size, &size);
+	data->enemy.img.buffer = (int *)mlx_get_data_addr(\
+									data->enemy.img.addr, \
+									&data->enemy.img.bits_per_pixel, \
+									&data->enemy.img.line_length, \
+									&data->enemy.img.endian);
+	data->enemy.img.line_length /= 4;
 }

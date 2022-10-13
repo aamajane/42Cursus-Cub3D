@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:43:24 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 01:57:58 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:12:27 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,12 @@
 
 void	init_images(t_data *data, int size)
 {
-	data->sprite.img.addr = mlx_xpm_file_to_image(data->mlx, \
-								data->sprite.img.path, &size, &size);
-	data->sprite.img.buffer = (int *)mlx_get_data_addr(\
-									data->sprite.img.addr, \
-									&data->sprite.img.bits_per_pixel, \
-									&data->sprite.img.line_length, \
-									&data->sprite.img.endian);
-	data->sprite.img.line_length /= 4;
 	init_walls_images(data, size);
 	init_lights_images(data, size);
 	init_door_images(data, size);
 	init_letters_images(data, size);
 	init_weapon_images(data);
+	init_enemy_images(data, size);
 }
 
 void	init_walls_images(t_data *data, int size)

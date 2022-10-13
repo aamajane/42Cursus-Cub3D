@@ -6,7 +6,7 @@
 #    By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 15:10:36 by aamajane          #+#    #+#              #
-#    Updated: 2022/10/13 15:21:08 by aamajane         ###   ########.fr        #
+#    Updated: 2022/10/13 23:12:43 by aamajane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,6 @@ SRCS_B	=	bonus/srcs/main.c \
 			bonus/srcs/init_images.c \
 			bonus/srcs/init_images_extra.c \
 			bonus/srcs/player_data.c \
-			bonus/srcs/sprites_data.c \
 			bonus/srcs/mlx_hook.c \
 			bonus/srcs/render_frame.c \
 			bonus/srcs/player_update.c \
@@ -51,13 +50,15 @@ SRCS_B	=	bonus/srcs/main.c \
 			bonus/srcs/ray_vertical_intercept.c \
 			bonus/srcs/ray_direction.c \
 			bonus/srcs/projection.c \
+			bonus/srcs/sprite.c \
 			bonus/srcs/door_checker.c \
 			bonus/srcs/door_rendering.c \
-			bonus/srcs/sprites_rendering.c \
+			bonus/srcs/enemy_rendering.c \
 			bonus/srcs/weapon_rendering.c \
 			bonus/srcs/minimap.c \
 			bonus/srcs/utils_map.c \
 			bonus/srcs/utils_math.c \
+			bonus/srcs/utils_sprites.c \
 			bonus/srcs/get_next_line.c
 
 OBJS_B	=	$(SRCS_B:.c=.o)

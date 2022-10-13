@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 15:23:58 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 23:14:58 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,12 +181,17 @@ typedef struct s_sprite
 
 typedef struct s_gsprite
 {
-	t_img		img;
 	t_sprite	*all;
 	t_sprite	*visible;
 	int			all_num;
 	int			visible_num;
 }				t_gsprite;
+
+typedef struct s_enemy
+{
+	t_gsprite	gsprite;
+	t_img		img;
+}				t_enemy;
 
 typedef struct s_light
 {
@@ -239,7 +244,7 @@ typedef struct s_data
 	t_img		minimap;
 	t_player	player;
 	t_door		door;
-	t_gsprite	sprite;
+	t_enemy		enemy;
 	t_weapon	weapon;
 	t_img		walls[NUM_WALLS];
 	t_light		lights[NUM_LIGHTS];
@@ -277,18 +282,13 @@ void	init_letters_images(t_data *data, int size);
 // init_images_extra.c 
 void	init_weapon_images(t_data *data);
 void	init_weapon_images_extra(t_data *data, int width, int height, int i);
+void	init_enemy_images(t_data *data, int size);
 
 // player_data.c
 void	player_data(t_player *player, char **map);
 double	player_position(t_player *player, char **map);
 double	player_starting_angle(char c);
 int		is_player(char c);
-
-// sprites_data.c
-void	sprites_data(t_gsprite *sprite, char **map);
-int		sprites_number(char **map);
-void	sprites_coordinates(t_sprite *sprites, char **map);
-void	sort_visible_sprites(t_data *data);
 
 // mlx_hook.c
 int		key_press(int keycode, t_data *data);
@@ -345,9 +345,13 @@ void	render_door(t_data *data);
 void	door_opening_timer(t_data *data);
 void	door_closing_timer(t_data *data);
 
-// sprites_rendering.c 
-void	render_sprites_projection(t_data *data);
-void	find_visible_sprites(t_data *data, int *visible_num);
+// enemy_rendering.c
+void	enemy_data(t_gsprite *gsprite, char **map);
+void	render_enemy_projection(t_data *data);
+
+// sprite.c
+void	find_visible_sprites(t_data *data, t_gsprite *gsprite);
+void	sort_visible_sprites(t_gsprite *gsprite);
 void	sprite_projection(t_data *data, t_sprite *sprite);
 void	sprite_rendering(t_data *data, t_sprite *sprite, t_img sprite_img);
 void	sprite_drawing(t_data *data, t_sprite *sprite, t_img sprite_img, int x);
@@ -382,6 +386,10 @@ double	degree_to_radian(double angle);
 void	normalize_angle(double *angle);
 int		create_trgb(int transparency, int red, int green, int blue);
 int		increase_color_intensity(double distance, int color);
+
+// utils_sprites.c
+int		sprites_number(char **map, char c);
+void	sprites_coordinates(t_sprite *sprites, char **map, char c);
 
 // get_next_line.c
 char	*get_next_line(int fd);

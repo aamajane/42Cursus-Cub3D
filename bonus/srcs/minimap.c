@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 00:22:25 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/07 23:46:50 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:55:05 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	draw_minimap(t_data *data, t_mini *mini)
 			mini->index = mini->img_y * data->minimap.line_length + mini->img_x;
 			mini->c = map_content(data, mini->map_x, mini->map_y, MINI_SIZE);
 			data->minimap.buffer[mini->index] = 0x00000000;
-			if (mini->c && mini->c != '0' && mini->c != ' ' && mini->c != 's')
+			if (mini->c && mini->c != '0' && mini->c != ' ' && mini->c != 'e')
 				data->minimap.buffer[mini->index] = 0x00525252;
 			if (mini->c == 'd')
 				data->minimap.buffer[mini->index] = 0x00696969;

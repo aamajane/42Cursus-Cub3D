@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 15:17:39 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 02:36:33 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 23:01:37 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	create_game(t_data *data)
 	init_images(data, TILE_SIZE);
 	init_variables(data);
 	player_data(&data->player, data->elm.map);
-	sprites_data(&data->sprite, data->elm.map);
+	enemy_data(&data->enemy.gsprite, data->elm.map);
 	random_wall(&data->elm.map);
 	mlx_hook(data->win, 2, 0, key_press, data);
 	mlx_hook(data->win, 3, 0, key_release, data);

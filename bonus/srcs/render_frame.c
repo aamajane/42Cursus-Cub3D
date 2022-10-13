@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:35:14 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/12 23:58:27 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:18:13 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	render_frame(t_data *data)
 	raycasting(data);
 	projection(data);
 	render_3d_projection(data);
-	render_sprites_projection(data);
+	render_enemy_projection(data);
 	if (data->door.render)
 		render_door(data);
 	render_weapon(data);

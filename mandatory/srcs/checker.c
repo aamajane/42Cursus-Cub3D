@@ -12,6 +12,42 @@
 
 #include "../includes/cub3D.h"
 
+void	ft_strrev(char *str)
+{
+	int		i;
+	int		j;
+	char	tmp;
+
+	i = 0;
+	j = ft_strlen(str) - 1;
+	while (i < j)
+	{
+		tmp = str[i];
+		str[i] = str[j];
+		str[j] = tmp;
+		i++;
+		j--;
+	}
+}
+
+char	*ft_strdupl(char *str)
+{
+	char	*dup;
+	int		i;
+
+	i = 0;
+	dup = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (!dup)
+		return (NULL);
+	while (str[i])
+	{
+		dup[i] = str[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
 /*
 * 1. Check if the file is a .cub file
 * 2. Check if the file is valid
@@ -24,9 +60,24 @@ void	checker(t_elm *elm, char *arg)
 	char	**tmp_elm;
 	char	**file;
 	t_var	var;
+	char	*tmp;
 
-	if (ft_strncmp(arg + ft_strlen(arg) - 4, ".cub", 4))
+	tmp = ft_strdupl(arg);
+
+	ft_strrev(tmp);
+	//Printf("tmp = %s\n", tmp);
+	//printf("%c\n", tmp[4]);
+	if (tmp[3] == '.' && tmp[4] == '/')
+	{
+		//write(2, "hi\n", 2);
+		free(tmp);
+		exit(puterror("Invalid file extension"));
+	}
+	if (ft_strncmp(tmp, "buc.", 4) != 0x0)
+	{
+		free(tmp);
 		exit(puterror("file extension must be .cub"));
+	}
 	file = read_file(arg);
 	separate_file_elements(elm, &tmp_elm, file);
 	free_double_pointer(file);

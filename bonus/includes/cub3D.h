@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 23:43:10 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/15 00:51:11 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define NUM_SHOOTING	9
 # define NUM_RELOADING	16
 # define NUM_BULLETS	10
-# define NUM_ENMY_DYING	5
+# define NUM_ENMY_DYING	9
 # define NUM_TARGETS	2
 # define NUM_RAYS		WIN_WIDTH
 
@@ -428,7 +428,7 @@ void	get_free(char **str);
 
 // music.c
 void	ft_afplay(t_data *data);
-void	render_menu(t_data *data);
 void	ft_afplay_gun(t_data *data);
+void	render_menu(t_data *data);
 
 #endif

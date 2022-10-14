@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:55:44 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 22:58:10 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/15 00:51:53 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ void	key_press_2(int keycode, t_data *data)
 			ft_afplay(data);
 	}
 	else if (keycode == KEY_C)
-		kill(data->pid, SIGKILL);
+	{
+		if (data->pid)
+			kill(data->pid, SIGKILL);
+	}
 	else if (keycode == KEY_SHIFT)
 		data->player.mov_speed = SHIFT_MODE;
 	else if (keycode == X_KEY)
@@ -72,8 +75,6 @@ int	key_release(int keycode, t_data *data)
 		data->player.mov_speed = NORMAL_MODE;
 	else if (keycode == KEY_C)
 		data->pid = 0;
-	else if (keycode == X_KEY)
-		data->pid = 0x0;
 	return (0);
 }
 
@@ -87,7 +88,8 @@ int	mouse_move(int x, int y, t_data *data)
 
 int	close_win(t_data *data)
 {
-	kill(data->pid, SIGKILL);
+	if (data->pid)
+		kill(data->pid, SIGKILL);
 	mlx_destroy_window(data->mlx, data->win);
 	exit(0);
 }

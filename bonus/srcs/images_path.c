@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 00:03:19 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 23:45:20 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/15 00:36:39 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,8 @@ void	images_path_extra_3(t_data *data)
 	data->enemy.dying[2].path = "./bonus/assets/enemy_dying_2.xpm";
 	data->enemy.dying[3].path = "./bonus/assets/enemy_dying_3.xpm";
 	data->enemy.dying[4].path = "./bonus/assets/enemy_dying_4.xpm";
+	data->enemy.dying[5].path = "./bonus/assets/enemy_dying_5.xpm";
+	data->enemy.dying[6].path = "./bonus/assets/enemy_dying_6.xpm";
+	data->enemy.dying[7].path = "./bonus/assets/enemy_dying_7.xpm";
+	data->enemy.dying[8].path = "./bonus/assets/enemy_dying_8.xpm";
 }

@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 22:54:29 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:03:14 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@
 
 # define EPSILON		0.3
 
-# define MUSIC			"./sound/doom.mp3"
+# define MUSIC			"./bonus/assets/sound/doom.mp3"
 
 typedef enum e_name
 {

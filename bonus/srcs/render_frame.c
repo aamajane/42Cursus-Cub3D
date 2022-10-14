@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:35:14 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 15:05:33 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 20:20:12 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	render_frame(t_data *data)
 	render_target(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->main_img.addr, 0, 0);
 	render_minimap(data);
+	menu(data);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 18:15:13 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 20:26:06 by ablaamim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <fcntl.h>
 # include <math.h>
 # include <mlx.h>
+# include <signal.h>
+# include <stdbool.h>
 
 # define WIN_WIDTH		1280
 # define WIN_HEIGHT 	720
@@ -60,6 +62,17 @@
 # define SPACE_KEY		49
 
 # define EPSILON		0.3
+
+# define SPACE_KEY		49
+# define KEY_SHIFT	257
+# define KEY_R		15
+# define KEY_C		8
+
+# define SCREEN_POS 1050
+# define WHITE		0x00FFFFFF
+# define SHIFT_MODE 6
+
+# define NORMAL_MODE 2
 
 typedef enum e_name
 {
@@ -251,26 +264,56 @@ typedef struct s_elm
 	int		map_height;
 }				t_elm;
 
+typedef struct s_keys
+{
+	bool	w;
+	bool	s;
+	bool	d;
+	bool	a;
+	bool	r;
+	bool	c;
+	bool	enter;
+	bool	right_arrow;
+	bool	left_arrow;
+	bool	up_arrow;
+	bool	down_arrow;
+	bool	shift;
+}	t_keys;
+
+# define MUSIC "/Users/ablaamim/Desktop/42Cursus-Cub3D/sound/doom.mp3"
+
+typedef enum e_music
+{
+	SONG,
+	RUN,
+}	t_music;
+
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
-	t_name		name;
-	t_elm		elm;
-	t_img		main_img;
-	t_img		minimap;
-	t_player	player;
-	t_door		door;
-	t_enemy		enemy;
-	t_weapon	weapon;
-	t_img		target[NUM_TARGETS];
-	t_img		walls[NUM_WALLS];
-	t_light		lights[NUM_LIGHTS];
-	t_img		letters[NUM_LETTERS];
-	t_ray		rays[NUM_RAYS];
-	t_column	column[NUM_RAYS];
-	double		dist_proj_plane;
-}				t_data;
+	enum e_music	music;
+	char			**afplay;
+	t_keys			keys;
+	int				frames;
+	int				max_frames;
+	int				pid;
+	void			*mlx;
+	void			*win;
+	t_name			name;
+	t_elm			elm;
+	t_img			main_img;
+	t_img			minimap;
+	t_player		player;
+	t_door			door;
+	t_enemy			enemy;
+	t_weapon		weapon;
+	t_img			target[NUM_TARGETS];
+	t_img			walls[NUM_WALLS];
+	t_light			lights[NUM_LIGHTS];
+	t_img			letters[NUM_LETTERS];
+	t_ray			rays[NUM_RAYS];
+	t_column		column[NUM_RAYS];
+	double			dist_proj_plane;
+}	t_data;
 
 // checker.c
 void	checker(t_elm *elm, char *arg);
@@ -416,5 +459,10 @@ char	*get_next_line(int fd);
 void	get_file(int fd, char **stock, char **line, char **buf);
 char	*get_line(char **stock, char **line);
 void	get_free(char **str);
+
+void	hooks_release_setter(int keycode, t_data *data);
+void	hooks_press_setter(int keycode, t_data *data);
+void	ft_afplay(t_data *data);
+void	menu(t_data *data);
 
 #endif

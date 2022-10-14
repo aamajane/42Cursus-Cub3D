@@ -34,8 +34,6 @@ int	key_press(int keycode, t_data *data)
 		data->player.rot_direction = 1;
 	else if (keycode == LEFT_KEY)
 		data->player.rot_direction = -1;
-	else if (keycode == X_KEY)
-		data->weapon.render_shooting = 1;
 	key_press_2(keycode, data);
 	return (0);
 }
@@ -53,6 +51,13 @@ void	key_press_2(int keycode, t_data *data)
 		kill(data->pid, SIGKILL);
 	else if (keycode == KEY_SHIFT)
 		data->player.mov_speed = SHIFT_MODE;
+	else if (keycode == X_KEY)
+	{
+		data->music = GUN_SHOT;
+		data->afplay[1] = GUN;
+		ft_afplay_gun(data);
+		data->weapon.render_shooting = 1;
+	}
 }
 
 int	key_release(int keycode, t_data *data)
@@ -67,6 +72,8 @@ int	key_release(int keycode, t_data *data)
 		data->player.mov_speed = NORMAL_MODE;
 	else if (keycode == KEY_C)
 		data->pid = 0;
+	else if (keycode == X_KEY)
+		data->pid = 0x0;
 	return (0);
 }
 
@@ -80,8 +87,7 @@ int	mouse_move(int x, int y, t_data *data)
 
 int	close_win(t_data *data)
 {
-	if (data->pid != 0)
-		kill(data->pid, SIGKILL);
+	kill(data->pid, SIGKILL);
 	mlx_destroy_window(data->mlx, data->win);
 	exit(0);
 }

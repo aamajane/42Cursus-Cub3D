@@ -12,6 +12,21 @@
 
 #include "../includes/cub3D.h"
 
+void	ft_afplay_gun(t_data *data)
+{
+	char	*afplay[3];
+	int		pid;
+
+	afplay[0] = "/usr/bin/afplay";
+	if (data->music == GUN_SHOT)
+		afplay[1] = data->afplay[1];
+	afplay[2] = 0;
+	pid = fork();
+	data->pid_gun = pid;
+	if (pid == 0)
+		execve(afplay[0], afplay, 0);
+}
+
 void	ft_afplay(t_data *data)
 {
 	char	*afplay[3];
@@ -33,7 +48,7 @@ void	render_menu(t_data *data)
 	int	y_pos;
 	int	color;
 
-	x_pos = 1050;
+	x_pos = 1020;
 	y_pos = 0;
 	color = 0x00FFFFFF;
 	mlx_string_put(data->mlx, data->win, x_pos, y_pos += 20, color, \
@@ -46,4 +61,7 @@ void	render_menu(t_data *data)
 					"Shoot: [X]");
 	mlx_string_put(data->mlx, data->win, x_pos, y_pos += 20, color, \
 					"Quit:  [ESC]");
+	mlx_string_put(data->mlx, data->win, x_pos, y_pos += 20, color, \
+					"Music on/off: [R] / [C]");
+	
 }

@@ -67,6 +67,7 @@ void	weapon_shooting_timer(t_data *data)
 			data->weapon.shooting_index = 0;
 			data->weapon.render_shooting = 0;
 			data->weapon.bullets--;
+			kill(data->pid_gun, SIGKILL);
 		}
 		data->weapon.shooting_timer = 0;
 	}

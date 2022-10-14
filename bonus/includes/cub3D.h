@@ -66,6 +66,7 @@
 # define EPSILON		0.3
 
 # define MUSIC			"./bonus/assets/sound/doom.mp3"
+# define GUN			"./bonus/assets/sound/gun.mp3"
 
 typedef enum e_name
 {
@@ -83,7 +84,7 @@ typedef enum e_name
 typedef enum e_music
 {
 	SONG,
-	RUN,
+	GUN_SHOT
 }			t_music;
 
 typedef struct s_r
@@ -281,6 +282,7 @@ typedef struct s_data
 	t_music		music;
 	char		**afplay;
 	int			pid;
+	int			pid_gun;
 }				t_data;
 
 // checker.c
@@ -427,5 +429,6 @@ void	get_free(char **str);
 // music.c
 void	ft_afplay(t_data *data);
 void	render_menu(t_data *data);
+void	ft_afplay_gun(t_data *data);
 
 #endif

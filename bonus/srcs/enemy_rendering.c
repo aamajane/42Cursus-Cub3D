@@ -14,15 +14,10 @@
 
 void	enemy_data(t_gsprite *gsprite, char **map)
 {
-	int	i;
-
 	gsprite->all_num = sprites_number(map, 'e');
 	gsprite->all = (t_sprite *)malloc(sizeof(t_sprite) * gsprite->all_num);
 	gsprite->visible = \
 				(t_sprite **)malloc(sizeof(t_sprite *) * gsprite->all_num);
-	i = -1;
-	while (++i < gsprite->all_num)
-		gsprite->visible[i] = (t_sprite *)malloc(sizeof(t_sprite));
 	sprites_coordinates(gsprite->all, map, 'e');
 	init_sprites_data(gsprite->all, gsprite->all_num);
 }

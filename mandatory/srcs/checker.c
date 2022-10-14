@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:42:50 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 16:01:07 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:17:06 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	*check_color(t_var *var, char *str)
 	var->i = -1;
 	while (var->tab[++var->i])
 	{
-		skip_spaces(var->tab[var->i], &var->j);
 		if (!var->tab[var->i][var->j] || \
 			ft_strlen(var->tab[var->i] + var->j) > 3)
 			exit(puterror("Invalid color"));
@@ -127,7 +126,8 @@ void	check_map(char **map)
 				exit(puterror("Invalid map"));
 			if ((map[i][j] == '0' || is_player(map[i][j])) && \
 				(!i || !map[i + 1] || !j || !map[i][j + 1] || \
-				map[i][j + 1] == ' ' || (j && map[i][j - 1] == ' ')))
+				map[i][j + 1] == ' ' || (j && map[i][j - 1] == ' ') || \
+				map[i + 1][j] == ' ' || (i && map[i - 1][j] == ' ')))
 				exit(puterror("Invalid map"));
 		}
 	}

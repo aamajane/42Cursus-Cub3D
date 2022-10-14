@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:42:50 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 22:54:46 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:17:44 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	checker(t_elm *elm, char *arg)
 	}
 	elm->map[i] = NULL;
 	free_double_pointer(file);
-	check_map(elm->map);
+	if (check_map(elm->map) != 1)
+		exit(puterror("Invalid map"));
 }
 
 char	**read_file(char *arg)
@@ -54,7 +55,7 @@ char	**read_file(char *arg)
 	return (file);
 }
 
-void	check_map(char **map)
+int	check_map(char **map)
 {
 	int	count;
 	int	i;
@@ -75,12 +76,12 @@ void	check_map(char **map)
 			if ((map[i][j] == '0' || map[i][j] == 'd' || \
 				map[i][j] == 'e' || is_player(map[i][j])) \
 				&& (!i || !map[i + 1] || !j || !map[i][j + 1] || \
-				map[i][j + 1] == ' ' || (j && map[i][j - 1] == ' ')))
+				map[i][j + 1] == ' ' || (j && map[i][j - 1] == ' ') || \
+				map[i + 1][j] == ' ' || (i && map[i - 1][j] == ' ')))
 				exit(puterror("Invalid map"));
 		}
 	}
-	if (count != 1)
-		exit(puterror("Invalid map"));
+	return (count);
 }
 
 int	map_width(char **map)

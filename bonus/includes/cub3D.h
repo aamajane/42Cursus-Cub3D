@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 23:03:14 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:17:54 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,7 +292,7 @@ typedef struct s_data
 // checker.c
 void	checker(t_elm *elm, char *arg);
 char	**read_file(char *arg);
-void	check_map(char **map);
+int		check_map(char **map);
 int		map_width(char **map);
 int		map_height(char **map);
 

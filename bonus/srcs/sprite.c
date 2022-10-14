@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:21:20 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 15:20:19 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:52:50 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	find_visible_sprites(t_data *data, t_gsprite *gsprite)
 			gsprite->all[i].distance = \
 					distance_between_points(gsprite->all[i].x, \
 					gsprite->all[i].y, data->player.x, data->player.y);
-			gsprite->visible[gsprite->visible_num] = gsprite->all[i];
+			gsprite->visible[gsprite->visible_num] = &gsprite->all[i];
 			(gsprite->visible_num)++;
 		}
 	}
@@ -42,7 +42,7 @@ void	find_visible_sprites(t_data *data, t_gsprite *gsprite)
 
 void	sort_visible_sprites(t_gsprite *gsprite)
 {
-	t_sprite	tmp;
+	t_sprite	*tmp;
 	int			i;
 	int			j;
 
@@ -52,8 +52,8 @@ void	sort_visible_sprites(t_gsprite *gsprite)
 		j = i + 1;
 		while (j < gsprite->visible_num)
 		{
-			if (gsprite->visible[i].distance < \
-				gsprite->visible[j].distance)
+			if (gsprite->visible[i]->distance < \
+				gsprite->visible[j]->distance)
 			{
 				tmp = gsprite->visible[i];
 				gsprite->visible[i] = gsprite->visible[j];

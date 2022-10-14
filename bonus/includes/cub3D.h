@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 15:20:42 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:52:52 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ typedef struct s_sprite
 typedef struct s_gsprite
 {
 	t_sprite	*all;
-	t_sprite	*visible;
+	t_sprite	**visible;
 	int			all_num;
 	int			visible_num;
 }				t_gsprite;

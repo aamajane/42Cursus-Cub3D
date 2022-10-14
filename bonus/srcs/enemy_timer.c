@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 00:53:15 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 14:59:56 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:35:41 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,12 @@ void	enemy_attacking_timer(t_data *data)
 
 void	enemy_dying_timer(t_data *data, int i)
 {
+	(void)i;
 	if (data->enemy.dying_timer > 15 * data->enemy.gsprite.visible_num)
 	{
 		data->enemy.dying_index++;
 		if (data->enemy.dying_index == NUM_E_DYING)
-		{
 			data->enemy.dying_index = 0;
-			data->enemy.gsprite.visible[i].is_dead = 1;
-		}
 		data->enemy.dying_timer = 0;
 	}
 	data->enemy.dying_timer++;

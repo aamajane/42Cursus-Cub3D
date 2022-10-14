@@ -6,7 +6,7 @@
 #    By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 15:10:36 by aamajane          #+#    #+#              #
-#    Updated: 2022/10/14 01:08:29 by aamajane         ###   ########.fr        #
+#    Updated: 2022/10/14 16:02:31 by aamajane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ OBJS_B	=	$(SRCS_B:.c=.o)
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror #-fsanitize=address
 
 MLX		=	-lmlx -framework OpenGL -framework AppKit
 

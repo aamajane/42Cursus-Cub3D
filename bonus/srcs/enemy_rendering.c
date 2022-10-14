@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 02:43:37 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 16:04:47 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:19:33 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,20 @@ void	render_enemy_projection(t_data *data)
 			sprite_projection(data, data->enemy.gsprite.visible[i]);
 		i = -1;
 		while (++i < data->enemy.gsprite.visible_num)
-			render_enemy(data, i);
+		{
+			if (!data->enemy.gsprite.visible[i]->is_dead)
+				render_enemy(data, i);
+			else
+				sprite_rendering(data, data->enemy.gsprite.visible[i], \
+						data->enemy.dying[NUM_E_DYING - 1]);
+		}
 	}
 }
 
 void	render_enemy(t_data *data, int i)
 {
 	if (data->enemy.gsprite.visible[i]->health > 0 && \
-		!data->enemy.gsprite.visible[i]->is_dead)
+		!data->enemy.gsprite.visible[i]->is_dying)
 	{
 		sprite_rendering(data, data->enemy.gsprite.visible[i], \
 						data->enemy.walking[data->enemy.walking_index]);
@@ -67,7 +73,7 @@ void	render_enemy(t_data *data, int i)
 		if (data->weapon.render_shooting == 1)
 		{
 			data->enemy.gsprite.visible[i]->health = 0;
-			data->enemy.gsprite.visible[i]->is_dead = 1;
+			data->enemy.gsprite.visible[i]->is_dying = 1;
 		}
 		data->weapon.target = 1;
 	}

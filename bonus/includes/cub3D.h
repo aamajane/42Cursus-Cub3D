@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 15:52:52 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:15:13 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ typedef struct s_sprite
 	int		right_x;
 	int		health;
 	int		on_target;
+	int		is_dying;
 	int		is_dead;
 }				t_sprite;
 

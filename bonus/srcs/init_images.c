@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:43:24 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 03:16:55 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:45:39 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,9 @@ void	init_all_images_extra(t_data *data, int size)
 	i = -1;
 	while (++i < NUM_RELOADING)
 		init_image(data, &data->weapon.reloading[i], size);
+	init_image(data, &data->enemy.standing, size);
 	i = -1;
-	while (++i < NUM_E_WALKING)
-		init_image(data, &data->enemy.walking[i], size);
-	i = -1;
-	while (++i < NUM_E_ATTACKS)
-		init_image(data, &data->enemy.attacking[i], size);
-	i = -1;
-	while (++i < NUM_E_DYING)
+	while (++i < NUM_ENMY_DYING)
 		init_image(data, &data->enemy.dying[i], size);
 }
 

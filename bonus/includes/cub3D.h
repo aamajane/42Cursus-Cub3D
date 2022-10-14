@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 23:17:54 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:43:10 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@
 # define NUM_SHOOTING	9
 # define NUM_RELOADING	16
 # define NUM_BULLETS	10
-# define NUM_E_WALKING	4
-# define NUM_E_ATTACKS	2
-# define NUM_E_DYING	5
+# define NUM_ENMY_DYING	5
 # define NUM_TARGETS	2
 # define NUM_RAYS		WIN_WIDTH
 
@@ -194,15 +192,11 @@ typedef struct s_gsprite
 typedef struct s_enemy
 {
 	t_gsprite	gsprite;
-	t_img		walking[NUM_E_WALKING];
-	t_img		attacking[NUM_E_ATTACKS];
-	t_img		dying[NUM_E_DYING];
-	int			walking_index;
-	int			attacking_index;
+	t_img		standing;
+	t_img		dying[NUM_ENMY_DYING];
 	int			dying_index;
-	int			walking_timer;
-	int			attacking_timer;
 	int			dying_timer;
+	int			dead_num;
 }				t_enemy;
 
 typedef struct s_light
@@ -300,7 +294,6 @@ int		map_height(char **map);
 void	create_game(t_data *data);
 void	create_images(t_data *data);
 void	init_variables(t_data *data);
-void	init_variables_extra(t_data *data);
 
 // images_path.c
 void	images_path(t_data *data);
@@ -379,12 +372,7 @@ void	door_closing_timer(t_data *data);
 void	enemy_data(t_gsprite *gsprite, char **map);
 void	render_enemy_projection(t_data *data);
 void	render_enemy(t_data *data, int i);
-void	enemy_timer(int *index, int *timer, int num);
-
-// enemy_timer.c
-void	enemy_walking_timer(t_data *data);
-void	enemy_attacking_timer(t_data *data);
-void	enemy_dying_timer(t_data *data, int i);
+void	enemy_dying_timer(t_data *data);
 
 // sprite.c
 void	find_visible_sprites(t_data *data, t_gsprite *gsprite);

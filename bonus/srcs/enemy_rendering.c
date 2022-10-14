@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 02:43:37 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 18:39:47 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:48:35 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,22 @@ void	render_enemy_projection(t_data *data)
 				render_enemy(data, i);
 			else
 				sprite_rendering(data, data->enemy.gsprite.visible[i], \
-						data->enemy.dying[NUM_E_DYING - 1]);
+						data->enemy.dying[NUM_ENMY_DYING - 1]);
 		}
 	}
+	if (data->enemy.dead_num != -1)
+		enemy_dying_timer(data);
 }
 
 void	render_enemy(t_data *data, int i)
 {
 	if (data->enemy.gsprite.visible[i]->health > 0 && \
 		!data->enemy.gsprite.visible[i]->is_dying)
-	{
 		sprite_rendering(data, data->enemy.gsprite.visible[i], \
-						data->enemy.walking[data->enemy.walking_index]);
-		enemy_walking_timer(data);
-	}
+						data->enemy.standing);
 	else
-	{
 		sprite_rendering(data, data->enemy.gsprite.visible[i], \
 						data->enemy.dying[data->enemy.dying_index]);
-		enemy_dying_timer(data, i);
-	}
 	if (data->enemy.gsprite.visible[i]->left_x < (WIN_WIDTH / 2) && \
 		data->enemy.gsprite.visible[i]->right_x > (WIN_WIDTH / 2) && \
 		data->enemy.gsprite.visible[i]->distance < 5 * TILE_SIZE && \
@@ -71,7 +67,24 @@ void	render_enemy(t_data *data, int i)
 		{
 			data->enemy.gsprite.visible[i]->health = 0;
 			data->enemy.gsprite.visible[i]->is_dying = 1;
+			data->enemy.dead_num = i;
 		}
 		data->weapon.target = 1;
 	}
+}
+
+void	enemy_dying_timer(t_data *data)
+{
+	if (data->enemy.dying_timer > 5)
+	{
+		data->enemy.dying_index++;
+		if (data->enemy.dying_index == NUM_ENMY_DYING)
+		{
+			data->enemy.dying_index = 0;
+			data->enemy.gsprite.visible[data->enemy.dead_num]->is_dead = 1;
+			data->enemy.dead_num = -1;
+		}
+		data->enemy.dying_timer = 0;
+	}
+	data->enemy.dying_timer++;
 }

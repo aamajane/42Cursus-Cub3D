@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 00:03:19 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 03:11:11 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:45:20 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,7 @@ void	images_path_extra_3(t_data *data)
 	data->weapon.shooting[6].path = "./bonus/assets/weapon_shooting_6.xpm";
 	data->weapon.shooting[7].path = "./bonus/assets/weapon_shooting_7.xpm";
 	data->weapon.shooting[8].path = "./bonus/assets/weapon_shooting_8.xpm";
-	data->enemy.walking[0].path = "./bonus/assets/enemy_walking_0.xpm";
-	data->enemy.walking[1].path = "./bonus/assets/enemy_walking_1.xpm";
-	data->enemy.walking[2].path = "./bonus/assets/enemy_walking_2.xpm";
-	data->enemy.walking[3].path = "./bonus/assets/enemy_walking_3.xpm";
-	data->enemy.attacking[0].path = "./bonus/assets/enemy_attacking_0.xpm";
-	data->enemy.attacking[1].path = "./bonus/assets/enemy_attacking_1.xpm";
+	data->enemy.standing.path = "./bonus/assets/enemy_standing.xpm";
 	data->enemy.dying[0].path = "./bonus/assets/enemy_dying_0.xpm";
 	data->enemy.dying[1].path = "./bonus/assets/enemy_dying_1.xpm";
 	data->enemy.dying[2].path = "./bonus/assets/enemy_dying_2.xpm";

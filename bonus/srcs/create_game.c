@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 15:17:39 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 22:52:48 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 23:42:18 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	create_game(t_data *data)
 	images_path(data);
 	init_all_images(data, TILE_SIZE);
 	init_variables(data);
-	init_variables_extra(data);
 	player_data(&data->player, data->elm.map);
 	enemy_data(&data->enemy.gsprite, data->elm.map);
 	random_wall(&data->elm.map);
@@ -69,16 +68,9 @@ void	init_variables(t_data *data)
 	data->weapon.shooting_timer = 0;
 	data->weapon.reloading_timer = 0;
 	data->weapon.target = 0;
-	data->enemy.walking_index = 0;
-	data->enemy.attacking_index = 0;
 	data->enemy.dying_index = 0;
-	data->enemy.walking_timer = 0;
-	data->enemy.attacking_timer = 0;
 	data->enemy.dying_timer = 0;
-}
-
-void	init_variables_extra(t_data *data)
-{
+	data->enemy.dead_num = -1;
 	data->afplay = (char **)malloc(sizeof(char *) * 3);
 	if (!data->afplay)
 		puterror("Failed to malloc afplay\n");

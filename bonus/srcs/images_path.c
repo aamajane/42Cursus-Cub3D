@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 00:03:19 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 23:33:59 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 03:11:11 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	images_path_extra_1(t_data *data)
 	data->letters[letter_s].path = "./bonus/assets/letter_s.xpm";
 	data->letters[letter_e].path = "./bonus/assets/letter_e.xpm";
 	data->letters[letter_w].path = "./bonus/assets/letter_w.xpm";
+	data->target[0].path = "./bonus/assets/target_red.xpm";
+	data->target[1].path = "./bonus/assets/target_green.xpm";
 	data->door.img.path = "./bonus/assets/door.xpm";
 	images_path_extra_2(data);
 }

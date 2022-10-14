@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:43:24 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 23:59:27 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 03:16:55 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	init_all_images(t_data *data, int size)
 	int	j;
 
 	i = -1;
+	while (++i < NUM_LETTERS)
+		init_image(data, &data->letters[i], size);
+	i = -1;
 	while (++i < NUM_WALLS)
 		init_image(data, &data->walls[i], size);
 	i = -1;
@@ -27,16 +30,13 @@ void	init_all_images(t_data *data, int size)
 		while (++j < NUM_LIGHTNING)
 			init_image(data, &data->lights[i].imgs[j], size);
 	}
+	init_image(data, &data->door.img, size);
 	i = -1;
-	while (++i < NUM_LETTERS)
-		init_image(data, &data->letters[i], size);
-	init_image(data, &data->weapon.holding, size);
+	while (++i < NUM_OP_DOORS)
+		init_image(data, &data->door.op_imgs[i], size);
 	i = -1;
-	while (++i < NUM_SHOOTING)
-		init_image(data, &data->weapon.shooting[i], size);
-	i = -1;
-	while (++i < NUM_RELOADING)
-		init_image(data, &data->weapon.reloading[i], size);
+	while (++i < NUM_TARGETS)
+		init_image(data, &data->target[i], size);
 	init_all_images_extra(data, size);
 }
 
@@ -44,10 +44,13 @@ void	init_all_images_extra(t_data *data, int size)
 {
 	int	i;
 
-	init_image(data, &data->door.img, size);
+	init_image(data, &data->weapon.holding, size);
 	i = -1;
-	while (++i < NUM_OP_DOORS)
-		init_image(data, &data->door.op_imgs[i], size);
+	while (++i < NUM_SHOOTING)
+		init_image(data, &data->weapon.shooting[i], size);
+	i = -1;
+	while (++i < NUM_RELOADING)
+		init_image(data, &data->weapon.reloading[i], size);
 	i = -1;
 	while (++i < NUM_E_WALKING)
 		init_image(data, &data->enemy.walking[i], size);

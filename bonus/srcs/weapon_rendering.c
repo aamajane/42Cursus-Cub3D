@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 23:28:53 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 15:24:10 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 03:05:10 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,23 @@ void	render_weapon(t_data *data)
 
 void	render_weapon_frames(t_data *data, t_img img)
 {
-	t_rwf	rwf;
+	t_r	r;
 
-	rwf.wpn_x = -1;
-	rwf.x = data->weapon.x;
-	while (++rwf.wpn_x < data->weapon.width)
+	r.txt_x = -1;
+	r.win_x = data->weapon.x;
+	while (++r.txt_x < data->weapon.width)
 	{
-		rwf.wpn_y = -1;
-		rwf.y = data->weapon.y;
-		while (++rwf.wpn_y < data->weapon.height)
+		r.txt_y = -1;
+		r.win_y = data->weapon.y;
+		while (++r.txt_y < data->weapon.height)
 		{
-			rwf.index = (rwf.y * data->main_img.line_length) + rwf.x;
-			rwf.wpn_index = (rwf.wpn_y * img.line_length) + rwf.wpn_x;
-			if (img.buffer[rwf.wpn_index] != img.buffer[0])
-				data->main_img.buffer[rwf.index] = img.buffer[rwf.wpn_index];
-			rwf.y++;
+			r.win_index = (r.win_y * data->main_img.line_length) + r.win_x;
+			r.txt_index = (r.txt_y * img.line_length) + r.txt_x;
+			if (img.buffer[r.txt_index] != img.buffer[0])
+				data->main_img.buffer[r.win_index] = img.buffer[r.txt_index];
+			r.win_y++;
 		}
-		rwf.x++;
+		r.win_x++;
 	}
 }
 
@@ -87,4 +87,26 @@ void	weapon_reloading_timer(t_data *data)
 		data->weapon.reloading_timer = 0;
 	}
 	data->weapon.reloading_timer++;
+}
+
+void	render_target(t_data *data, t_img img)
+{
+	t_r	r;
+
+	r.txt_x = -1;
+	r.win_x = (WIN_WIDTH / 2) - (TILE_SIZE / 2);
+	while (++r.txt_x < TILE_SIZE)
+	{
+		r.txt_y = -1;
+		r.win_y = (WIN_HEIGHT / 2) - (TILE_SIZE / 2);
+		while (++r.txt_y < TILE_SIZE)
+		{
+			r.win_index = (r.win_y * data->main_img.line_length) + r.win_x;
+			r.txt_index = (r.txt_y * img.line_length) + r.txt_x;
+			if (img.buffer[r.txt_index] != img.buffer[0])
+				data->main_img.buffer[r.win_index] = img.buffer[r.txt_index];
+			r.win_y++;
+		}
+		r.win_x++;
+	}
 }

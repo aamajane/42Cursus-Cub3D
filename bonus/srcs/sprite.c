@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:21:20 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 23:10:01 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 03:58:42 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ void	find_visible_sprites(t_data *data, t_gsprite *gsprite)
 		anlge_sprite_player = fabs(anlge_sprite_player);
 		if (anlge_sprite_player < (data->player.fov_angle / 2) + EPSILON)
 		{
-			gsprite->visible[gsprite->visible_num].x = gsprite->all[i].x;
-			gsprite->visible[gsprite->visible_num].y = gsprite->all[i].y;
-			gsprite->visible[gsprite->visible_num].angle = anlge_sprite_player;
-			gsprite->visible[gsprite->visible_num].distance = \
+			gsprite->all[i].angle = anlge_sprite_player;
+			gsprite->all[i].distance = \
 					distance_between_points(gsprite->all[i].x, \
 					gsprite->all[i].y, data->player.x, data->player.y);
+			gsprite->visible[gsprite->visible_num] = gsprite->all[i];
 			(gsprite->visible_num)++;
 		}
 	}

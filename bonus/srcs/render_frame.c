@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:35:14 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 22:18:13 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 03:29:12 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	render_frame(t_data *data)
 	if (data->door.render)
 		render_door(data);
 	render_weapon(data);
+	render_target(data, data->target[0]);
 	mlx_put_image_to_window(data->mlx, data->win, data->main_img.addr, 0, 0);
 	render_minimap(data);
 	return (0);

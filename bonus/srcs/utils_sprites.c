@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 23:09:48 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 00:51:15 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 01:30:42 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,14 @@ void	sprites_coordinates(t_sprite *sprites, char **map, char c)
 	}
 }
 
-void	init_sprites_health(t_sprite *sprites, int sprites_num)
+void	init_sprites_data(t_sprite *sprites, int sprites_num)
 {
 	int	i;
 
 	i = -1;
 	while (++i < sprites_num)
+	{
 		sprites[i].health = 100;
+		sprites[i].is_dead = 0;
+	}
 }

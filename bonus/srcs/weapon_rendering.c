@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 23:28:53 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 03:05:10 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:08:34 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,14 @@ void	weapon_reloading_timer(t_data *data)
 	data->weapon.reloading_timer++;
 }
 
-void	render_target(t_data *data, t_img img)
+void	render_target(t_data *data)
 {
-	t_r	r;
+	t_img	img;
+	t_r		r;
 
+	img = data->target[0];
+	if (data->weapon.target)
+		img = data->target[1];
 	r.txt_x = -1;
 	r.win_x = (WIN_WIDTH / 2) - (TILE_SIZE / 2);
 	while (++r.txt_x < TILE_SIZE)

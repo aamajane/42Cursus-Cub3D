@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 23:09:48 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 01:30:42 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:20:47 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	init_sprites_data(t_sprite *sprites, int sprites_num)
 	while (++i < sprites_num)
 	{
 		sprites[i].health = 100;
+		sprites[i].on_target = 0;
 		sprites[i].is_dead = 0;
 	}
 }

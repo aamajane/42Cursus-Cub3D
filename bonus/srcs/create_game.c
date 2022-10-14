@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 15:17:39 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 00:03:21 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:07:32 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	init_variables(t_data *data)
 	data->weapon.reloading_index = 0;
 	data->weapon.shooting_timer = 0;
 	data->weapon.reloading_timer = 0;
+	data->weapon.target = 0;
 	data->enemy.walking_index = 0;
 	data->enemy.attacking_index = 0;
 	data->enemy.dying_index = 0;

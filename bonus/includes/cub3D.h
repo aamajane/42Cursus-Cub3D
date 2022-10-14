@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 03:14:25 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:20:42 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ typedef struct s_sprite
 	int		left_x;
 	int		right_x;
 	int		health;
+	int		on_target;
 	int		is_dead;
 }				t_sprite;
 
@@ -187,7 +188,6 @@ typedef struct s_enemy
 	int			walking_timer;
 	int			attacking_timer;
 	int			dying_timer;
-	int			is_dead;
 }				t_enemy;
 
 typedef struct s_light
@@ -227,6 +227,7 @@ typedef struct s_weapon
 	int		reloading_index;
 	int		shooting_timer;
 	int		reloading_timer;
+	int		target;
 }				t_weapon;
 
 typedef struct player
@@ -363,7 +364,7 @@ void	enemy_timer(int *index, int *timer, int num);
 // enemy_timer.c
 void	enemy_walking_timer(t_data *data);
 void	enemy_attacking_timer(t_data *data);
-void	enemy_dying_timer(t_data *data);
+void	enemy_dying_timer(t_data *data, int i);
 
 // sprite.c
 void	find_visible_sprites(t_data *data, t_gsprite *gsprite);
@@ -377,7 +378,7 @@ void	render_weapon(t_data *data);
 void	render_weapon_frames(t_data *data, t_img img);
 void	weapon_shooting_timer(t_data *data);
 void	weapon_reloading_timer(t_data *data);
-void	render_target(t_data *data, t_img img);
+void	render_target(t_data *data);
 
 // minimap.c
 void	render_minimap(t_data *data);

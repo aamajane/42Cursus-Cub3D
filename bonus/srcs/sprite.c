@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:21:20 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 03:58:42 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:20:19 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void	sprite_drawing(t_data *data, t_sprite *sprite, t_img sprite_img, int x)
 		if (sprite->distance < data->rays[x].distance && \
 			sprite_img.buffer[offset_index] != sprite_img.buffer[0])
 		{
+			sprite->on_target = 1;
 			data->main_img.buffer[index] = \
 					increase_color_intensity(sprite->distance, \
 											sprite_img.buffer[offset_index]);

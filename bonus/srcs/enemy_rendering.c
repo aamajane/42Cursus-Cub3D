@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 02:43:37 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 03:59:09 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:20:25 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,37 @@ void	render_enemy_projection(t_data *data)
 			sprite_projection(data, &data->enemy.gsprite.visible[i]);
 		i = -1;
 		while (++i < data->enemy.gsprite.visible_num && \
-				data->enemy.gsprite.visible[i].is_dead == 0)
+				!data->enemy.gsprite.visible[i].is_dead)
 			render_enemy(data, i);
 	}
-	enemy_walking_timer(data);
-	enemy_attacking_timer(data);
-	enemy_dying_timer(data);
 }
 
 void	render_enemy(t_data *data, int i)
 {
 	if (data->enemy.gsprite.visible[i].health > 0)
+	{
 		sprite_rendering(data, &data->enemy.gsprite.visible[i], \
 						data->enemy.walking[data->enemy.walking_index]);
+		enemy_walking_timer(data);
+	}
 	else
 	{
 		sprite_rendering(data, &data->enemy.gsprite.visible[i], \
 						data->enemy.dying[data->enemy.dying_index]);
-		data->enemy.is_dead = i;
+		enemy_dying_timer(data, i);
 	}
 	// sprite_rendering(data, &data->enemy.gsprite.visible[i], \
 	// 					data->enemy.attacking[data->enemy.attacking_index]);
+	// enemy_attacking_timer(data);
 	if (data->enemy.gsprite.visible[i].left_x < (WIN_WIDTH / 2) && \
 		data->enemy.gsprite.visible[i].right_x > (WIN_WIDTH / 2) && \
-		data->weapon.render_shooting == 1)
-		data->enemy.gsprite.visible[i].health = 0;
+		data->enemy.gsprite.visible[i].on_target)
+	{
+		if (data->weapon.render_shooting == 1)
+			data->enemy.gsprite.visible[i].health = 0;
+		data->weapon.target = 1;
+		printf("health %d\n", data->enemy.gsprite.visible[i].health);
+	}
+	else
+		data->weapon.target = 0;
 }

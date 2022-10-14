@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 20:26:06 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/10/14 22:54:29 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,21 @@
 # define D_KEY			2
 # define A_KEY			0
 # define X_KEY			7
+# define KEY_R			15
+# define KEY_C			8
 # define UP_KEY			126
 # define DOWN_KEY		125
 # define RIGHI_KEY		124
 # define LEFT_KEY		123
 # define ESC_KEY		53
-# define ENTRE_KEY		36
-# define SPACE_KEY		49
+# define KEY_SHIFT		257
+
+# define SHIFT_MODE		6
+# define NORMAL_MODE 	2
 
 # define EPSILON		0.3
 
-# define SPACE_KEY		49
-# define KEY_SHIFT	257
-# define KEY_R		15
-# define KEY_C		8
-
-# define SCREEN_POS 1050
-# define WHITE		0x00FFFFFF
-# define SHIFT_MODE 6
-
-# define NORMAL_MODE 2
+# define MUSIC			"./sound/doom.mp3"
 
 typedef enum e_name
 {
@@ -86,6 +81,12 @@ typedef enum e_name
 	light_4 = 103,
 	door = 200,
 }			t_name;
+
+typedef enum e_music
+{
+	SONG,
+	RUN,
+}			t_music;
 
 typedef struct s_r
 {
@@ -264,56 +265,29 @@ typedef struct s_elm
 	int		map_height;
 }				t_elm;
 
-typedef struct s_keys
-{
-	bool	w;
-	bool	s;
-	bool	d;
-	bool	a;
-	bool	r;
-	bool	c;
-	bool	enter;
-	bool	right_arrow;
-	bool	left_arrow;
-	bool	up_arrow;
-	bool	down_arrow;
-	bool	shift;
-}	t_keys;
-
-# define MUSIC "/Users/ablaamim/Desktop/42Cursus-Cub3D/sound/doom.mp3"
-
-typedef enum e_music
-{
-	SONG,
-	RUN,
-}	t_music;
-
 typedef struct s_data
 {
-	enum e_music	music;
-	char			**afplay;
-	t_keys			keys;
-	int				frames;
-	int				max_frames;
-	int				pid;
-	void			*mlx;
-	void			*win;
-	t_name			name;
-	t_elm			elm;
-	t_img			main_img;
-	t_img			minimap;
-	t_player		player;
-	t_door			door;
-	t_enemy			enemy;
-	t_weapon		weapon;
-	t_img			target[NUM_TARGETS];
-	t_img			walls[NUM_WALLS];
-	t_light			lights[NUM_LIGHTS];
-	t_img			letters[NUM_LETTERS];
-	t_ray			rays[NUM_RAYS];
-	t_column		column[NUM_RAYS];
-	double			dist_proj_plane;
-}	t_data;
+	void		*mlx;
+	void		*win;
+	t_name		name;
+	t_elm		elm;
+	t_img		main_img;
+	t_img		minimap;
+	t_player	player;
+	t_door		door;
+	t_enemy		enemy;
+	t_weapon	weapon;
+	t_img		target[NUM_TARGETS];
+	t_img		walls[NUM_WALLS];
+	t_light		lights[NUM_LIGHTS];
+	t_img		letters[NUM_LETTERS];
+	t_ray		rays[NUM_RAYS];
+	t_column	column[NUM_RAYS];
+	double		dist_proj_plane;
+	t_music		music;
+	char		**afplay;
+	int			pid;
+}				t_data;
 
 // checker.c
 void	checker(t_elm *elm, char *arg);
@@ -326,6 +300,7 @@ int		map_height(char **map);
 void	create_game(t_data *data);
 void	create_images(t_data *data);
 void	init_variables(t_data *data);
+void	init_variables_extra(t_data *data);
 
 // images_path.c
 void	images_path(t_data *data);
@@ -346,6 +321,7 @@ int		is_player(char c);
 
 // mlx_hook.c
 int		key_press(int keycode, t_data *data);
+void	key_press_2(int keycode, t_data *data);
 int		key_release(int keycode, t_data *data);
 int		mouse_move(int x, int y, t_data *data);
 int		close_win(t_data *data);
@@ -460,9 +436,8 @@ void	get_file(int fd, char **stock, char **line, char **buf);
 char	*get_line(char **stock, char **line);
 void	get_free(char **str);
 
-void	hooks_release_setter(int keycode, t_data *data);
-void	hooks_press_setter(int keycode, t_data *data);
+// music.c
 void	ft_afplay(t_data *data);
-void	menu(t_data *data);
+void	render_menu(t_data *data);
 
 #endif

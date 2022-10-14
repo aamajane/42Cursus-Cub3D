@@ -6,7 +6,7 @@
 #    By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 15:10:36 by aamajane          #+#    #+#              #
-#    Updated: 2022/10/14 20:22:08 by ablaamim         ###   ########.fr        #
+#    Updated: 2022/10/14 22:56:10 by aamajane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,15 +60,13 @@ SRCS_B	=	bonus/srcs/main.c \
 			bonus/srcs/utils_math.c \
 			bonus/srcs/utils_sprites.c \
 			bonus/srcs/get_next_line.c \
-			bonus/srcs/hooks_bool.c \
 			bonus/srcs/music.c \
-			bonus/srcs/render_controlls.c \
 
 OBJS_B	=	$(SRCS_B:.c=.o)
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror #-fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror
 
 MLX		=	-lmlx -framework OpenGL -framework AppKit
 

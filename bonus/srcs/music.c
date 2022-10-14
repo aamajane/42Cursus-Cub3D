@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   music.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ablaamim <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 20:01:25 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/10/14 20:24:45 by ablaamim         ###   ########.fr       */
+/*   Updated: 2022/10/14 22:46:08 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-/*
-*  Change user in order to play music
-*/
 
 void	ft_afplay(t_data *data)
 {
@@ -29,4 +25,25 @@ void	ft_afplay(t_data *data)
 	data->pid = pid;
 	if (pid == 0)
 		execve(afplay[0], afplay, 0);
+}
+
+void	render_menu(t_data *data)
+{
+	int	x_pos;
+	int	y_pos;
+	int	color;
+
+	x_pos = 1050;
+	y_pos = 0;
+	color = 0x00FFFFFF;
+	mlx_string_put(data->mlx, data->win, x_pos, y_pos += 20, color, \
+					"Move:  [W] [A] [S] [D]");
+	mlx_string_put(data->mlx, data->win, x_pos, y_pos += 20, color, \
+					"Turn:  [<-] [->]");
+	mlx_string_put(data->mlx, data->win, x_pos, y_pos += 20, color, \
+					"Run:   [SHIFT]");
+	mlx_string_put(data->mlx, data->win, x_pos, y_pos += 20, color, \
+					"Shoot: [X]");
+	mlx_string_put(data->mlx, data->win, x_pos, y_pos += 20, color, \
+					"Quit:  [ESC]");
 }

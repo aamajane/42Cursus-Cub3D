@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:42:50 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/15 01:21:40 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/15 01:31:24 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ int	*check_color(t_var *var, char *str)
 	while (var->tab[++var->i])
 	{
 		var->j = 0;
-		if (!var->tab[var->i][var->j] || \
-			ft_strlen(var->tab[var->i]) > 3)
+		if (ft_strlen(var->tab[var->i]) > 3)
 			exit(puterror("Invalid color"));
 		while (var->tab[var->i][var->j])
 			if (!ft_isdigit(var->tab[var->i][var->j++]))

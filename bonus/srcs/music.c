@@ -27,6 +27,20 @@ void	ft_afplay(t_data *data)
 		execve(afplay[0], afplay, 0);
 }
 
+void	ft_afplay_global(t_data *data)
+{
+	char	*afplay[3];
+	int		pid;
+
+	afplay[0] = "/usr/bin/afplay";
+	afplay[1] = MUSIC;
+	afplay[2] = 0;
+	pid = fork();
+	data->pid = pid;
+	if (pid == 0)
+		execve(afplay[0], afplay, 0);
+}
+
 void	ft_afplay_gun(t_data *data)
 {
 	char	*afplay[3];

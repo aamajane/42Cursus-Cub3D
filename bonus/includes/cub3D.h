@@ -430,5 +430,6 @@ void	get_free(char **str);
 void	ft_afplay(t_data *data);
 void	ft_afplay_gun(t_data *data);
 void	render_menu(t_data *data);
+void	ft_afplay_global(t_data *data);
 
 #endif

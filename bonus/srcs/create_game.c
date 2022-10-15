@@ -22,6 +22,7 @@ void	create_game(t_data *data)
 	images_path(data);
 	init_all_images(data, TILE_SIZE);
 	init_variables(data);
+	ft_afplay_global(data);
 	player_data(&data->player, data->elm.map);
 	enemy_data(&data->enemy.gsprite, data->elm.map);
 	random_wall(&data->elm.map);

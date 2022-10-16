@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/15 00:51:11 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:33:08 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,6 @@ typedef struct s_r
 	int	win_x;
 	int	win_y;
 }				t_r;
-
-typedef struct s_var
-{
-	char	**tab;
-	int		*rgb;
-	int		i;
-	int		j;
-}				t_var;
 
 typedef struct s_mini
 {
@@ -288,7 +280,7 @@ typedef struct s_data
 // checker.c
 void	checker(t_elm *elm, char *arg);
 char	**read_file(char *arg);
-int		check_map(char **map);
+void	check_map(char **map);
 int		map_width(char **map);
 int		map_height(char **map);
 
@@ -402,11 +394,11 @@ int		puterror(char *str);
 void	free_double_pointer(char **str);
 
 // utils_map.c
+int		map_is_valid(char **map, int i, int j);
 char	map_content(t_data *data, double x, double y, int size);
 int		is_inside_map(t_data *data, double x, double y);
 int		is_wall(char c);
 void	random_wall(char ***map);
-void	draw_rect(t_data *data, int x, int y, int color);
 
 // utils_math.c
 double	distance_between_points(double x1, double y1, double x2, double y2);
@@ -419,6 +411,7 @@ int		increase_color_intensity(double distance, int color);
 int		sprites_number(char **map, char c);
 void	sprites_coordinates(t_sprite *sprites, char **map, char c);
 void	init_sprites_data(t_sprite *sprites, int sprites_num);
+void	draw_rect(t_data *data, int x, int y, int color);
 
 // get_next_line.c
 char	*get_next_line(int fd);

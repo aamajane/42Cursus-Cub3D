@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:43:24 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 23:45:39 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:26:30 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	init_all_images_extra(t_data *data, int size)
 void	init_image(t_data *data, t_img *img, int size)
 {
 	img->addr = mlx_xpm_file_to_image(data->mlx, img->path, &size, &size);
+	if (!img->addr)
+		exit(puterror("Failed to load image"));
 	img->buffer = (int *)mlx_get_data_addr(img->addr, &img->bits_per_pixel, \
 									&img->line_length, &img->endian);
 	img->line_length /= 4;

@@ -6,11 +6,22 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 20:45:59 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/06 23:31:28 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:31:24 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+int	map_is_valid(char **map, int i, int j)
+{
+	if (!i || !map[i + 1] || !j || !map[i][j + 1] || \
+		map[i][j + 1] == ' ' || (j && map[i][j - 1] == ' ') || \
+		map[i + 1][j] == ' ' || (i && map[i - 1][j] == ' ') || \
+		!map[i][j + 1] || (j && !map[i][j - 1]) || \
+		!map[i + 1][j] || (i && !map[i - 1][j]))
+		return (0);
+	return (1);
+}
 
 char	map_content(t_data *data, double x, double y, int size)
 {
@@ -54,22 +65,4 @@ void	random_wall(char ***map)
 				(*map)[i][j] = (rand() % (MAX_WALL_NUM + 1 - MIN_WALL_NUM) + \
 								MIN_WALL_NUM) + '0';
 	}	
-}
-
-void	draw_rect(t_data *data, int x, int y, int color)
-{
-	int	i;
-	int	j;
-	int	index;
-
-	j = -1;
-	while (++j < RECT_SIZE)
-	{
-		i = -1;
-		while (++i < RECT_SIZE)
-		{
-			index = ((y + j) * data->minimap.line_length) + (x + i);
-			data->minimap.buffer[index] = color;
-		}
-	}
 }

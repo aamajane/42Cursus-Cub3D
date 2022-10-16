@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 23:09:48 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 18:15:23 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:30:16 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,23 @@ void	init_sprites_data(t_sprite *sprites, int sprites_num)
 		sprites[i].on_target = 0;
 		sprites[i].is_dying = 0;
 		sprites[i].is_dead = 0;
+	}
+}
+
+void	draw_rect(t_data *data, int x, int y, int color)
+{
+	int	i;
+	int	j;
+	int	index;
+
+	j = -1;
+	while (++j < RECT_SIZE)
+	{
+		i = -1;
+		while (++i < RECT_SIZE)
+		{
+			index = ((y + j) * data->minimap.line_length) + (x + i);
+			data->minimap.buffer[index] = color;
+		}
 	}
 }

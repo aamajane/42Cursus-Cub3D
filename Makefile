@@ -6,7 +6,7 @@
 #    By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 15:10:36 by aamajane          #+#    #+#              #
-#    Updated: 2022/10/14 23:40:06 by aamajane         ###   ########.fr        #
+#    Updated: 2022/10/16 16:06:02 by aamajane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRCS_M	=	mandatory/srcs/main.c \
 			mandatory/srcs/ray_vertical_intercept.c \
 			mandatory/srcs/ray_direction.c \
 			mandatory/srcs/projection.c \
-			mandatory/srcs/utils_checker.c \
+			mandatory/srcs/utils_checker_1.c \
+			mandatory/srcs/utils_checker_2.c \
 			mandatory/srcs/utils_map.c \
 			mandatory/srcs/utils_math.c \
 			mandatory/srcs/get_next_line.c

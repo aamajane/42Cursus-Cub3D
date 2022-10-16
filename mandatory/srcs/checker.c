@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:42:50 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 15:59:42 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:13:37 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,11 +129,7 @@ void	check_map(char **map)
 				!is_player(map[i][j]))
 				exit(puterror("Invalid map"));
 			if ((map[i][j] == '0' || is_player(map[i][j])) && \
-				(!i || !map[i + 1] || !j || !map[i][j + 1] || \
-				map[i][j + 1] == ' ' || (j && map[i][j - 1] == ' ') || \
-				map[i + 1][j] == ' ' || (i && map[i - 1][j] == ' ') || \
-				!map[i][j + 1] || (j && !map[i][j - 1]) || \
-				!map[i + 1][j] || (i && !map[i - 1][j])))
+				!map_is_valid(map, i, j))
 				exit(puterror("Invalid map"));
 		}
 	}

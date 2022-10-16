@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 15:59:48 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:13:21 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,9 +185,13 @@ void	projection_facing_side(t_data *data, int i);
 int		puterror(char *str);
 void	free_double_pointer(char **str);
 
-// utils_checker.c
+// utils_checker_1.c
 char	**read_file(char *arg);
 void	separate_file_elements(t_elm *elm, char ***tmp_elm, char **file);
+void	skip_spaces(char *str, int *i);
+int		map_is_valid(char **map, int i, int j);
+
+// utils_checker_2.c
 int		is_color(char *str, int **count);
 int		is_direction(char *str, int **count);
 int		*copy_rgb_color(char **tab);
@@ -197,7 +201,6 @@ int		map_width(char **map);
 int		map_height(char **map);
 int		map_has_wall_at(t_data *data, double x, double y);
 int		is_inside_map(t_data *data, double x, double y);
-void	skip_spaces(char *str, int *i);
 
 // utils_math.c
 double	distance_between_points(double x1, double y1, double x2, double y2);

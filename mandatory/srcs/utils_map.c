@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 20:45:59 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 15:50:15 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:06:48 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,4 @@ int	is_inside_map(t_data *data, double x, double y)
 		y >= 0 && y < data->elm.map_height * TILE_SIZE)
 		return (1);
 	return (0);
-}
-
-void	skip_spaces(char *str, int *i)
-{
-	*i = 0;
-	while (str[*i] == ' ')
-		(*i)++;
 }

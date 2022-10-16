@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:42:50 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 16:32:59 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:48:50 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,32 +82,12 @@ void	check_map(char **map)
 		exit(puterror("Invalid map"));
 }
 
-int	map_width(char **map)
+int	map_is_valid(char **map, int i, int j)
 {
-	int	width;
-	int	i;
-	int	j;
-
-	width = 0;
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-			j++;
-		if (j > width)
-			width = j;
-		i++;
-	}
-	return (width);
-}
-
-int	map_height(char **map)
-{
-	int	height;
-
-	height = 0;
-	while (map[height])
-		height++;
-	return (height);
+	if (!i || !map[i + 1] || !map[i + 1][j] || (i && !map[i - 1][j]) || \
+		!j || !map[i][j + 1] || (j && !map[i][j - 1]) || \
+		map[i + 1][j] == ' ' || (i && map[i - 1][j] == ' ') || \
+		map[i][j + 1] == ' ' || (j && map[i][j - 1] == ' '))
+		return (0);
+	return (1);
 }

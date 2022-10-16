@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 16:33:08 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:42:21 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,13 +281,13 @@ typedef struct s_data
 void	checker(t_elm *elm, char *arg);
 char	**read_file(char *arg);
 void	check_map(char **map);
-int		map_width(char **map);
-int		map_height(char **map);
+int		map_is_valid(char **map, int i, int j);
 
 // create_game.c
 void	create_game(t_data *data);
 void	create_images(t_data *data);
 void	init_variables(t_data *data);
+void	random_wall(char ***map);
 
 // images_path.c
 void	images_path(t_data *data);
@@ -394,11 +394,11 @@ int		puterror(char *str);
 void	free_double_pointer(char **str);
 
 // utils_map.c
-int		map_is_valid(char **map, int i, int j);
+int		map_width(char **map);
+int		map_height(char **map);
 char	map_content(t_data *data, double x, double y, int size);
 int		is_inside_map(t_data *data, double x, double y);
 int		is_wall(char c);
-void	random_wall(char ***map);
 
 // utils_math.c
 double	distance_between_points(double x1, double y1, double x2, double y2);

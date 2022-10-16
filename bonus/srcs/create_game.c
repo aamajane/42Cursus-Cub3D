@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 15:17:39 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 16:25:39 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:41:14 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,20 @@ void	init_variables(t_data *data)
 	data->enemy.dead_num = -1;
 	data->afplay = (char **)malloc(sizeof(char *) * 3);
 	data->pid = 0;
+}
+
+void	random_wall(char ***map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while ((*map)[++i])
+	{
+		j = -1;
+		while ((*map)[i][++j])
+			if ((*map)[i][j] == '1')
+				(*map)[i][j] = (rand() % (MAX_WALL_NUM + 1 - MIN_WALL_NUM) + \
+								MIN_WALL_NUM) + '0';
+	}	
 }

@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 15:29:52 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 16:13:10 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:51:27 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,10 @@ void	skip_spaces(char *str, int *i)
 
 int	map_is_valid(char **map, int i, int j)
 {
-	if (!i || !map[i + 1] || !j || !map[i][j + 1] || \
-		map[i][j + 1] == ' ' || (j && map[i][j - 1] == ' ') || \
+	if (!i || !map[i + 1] || !map[i + 1][j] || (i && !map[i - 1][j]) || \
+		!j || !map[i][j + 1] || (j && !map[i][j - 1]) || \
 		map[i + 1][j] == ' ' || (i && map[i - 1][j] == ' ') || \
-		!map[i][j + 1] || (j && !map[i][j - 1]) || \
-		!map[i + 1][j] || (i && !map[i - 1][j]))
+		map[i][j + 1] == ' ' || (j && map[i][j - 1] == ' '))
 		return (0);
 	return (1);
 }

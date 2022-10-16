@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 02:43:37 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/15 00:55:40 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:01:00 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	render_enemy(t_data *data, int i)
 
 void	enemy_dying_timer(t_data *data)
 {
-	if (data->enemy.dying_timer > 4)
+	if (data->enemy.dying_timer > 1)
 	{
 		data->enemy.dying_index++;
 		if (data->enemy.dying_index == NUM_ENMY_DYING)

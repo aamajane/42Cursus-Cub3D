@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 23:28:53 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/15 00:54:14 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:04:03 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	render_weapon_frames(t_data *data, t_img img)
 
 void	weapon_shooting_timer(t_data *data)
 {
-	if (data->weapon.shooting_timer > 4)
+	if (data->weapon.shooting_timer > 2)
 	{
 		data->weapon.shooting_index++;
 		if (data->weapon.shooting_index == NUM_SHOOTING)

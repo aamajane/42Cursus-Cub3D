@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:55:44 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/15 00:51:53 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:03:10 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	key_press_2(int keycode, t_data *data)
 	}
 	else if (keycode == KEY_SHIFT)
 		data->player.mov_speed = SHIFT_MODE;
-	else if (keycode == X_KEY)
+	else if (keycode == X_KEY && !data->weapon.render_shooting && \
+			!data->weapon.render_reloading)
 	{
 		data->music = GUN_SHOT;
 		data->afplay[1] = GUN;

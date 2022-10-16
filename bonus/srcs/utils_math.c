@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:38:20 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/06 16:45:06 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 21:37:18 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	increase_color_intensity(double distance, int color)
 	int		blue;
 	double	intensity_factor;
 
-	if (distance <= 255)
+	if (distance <= INTENSITY)
 		return (color);
-	intensity_factor = 255 / distance;
+	intensity_factor = INTENSITY / distance;
 	transparency = ((color >> 24) & 0xFF) * intensity_factor;
 	red = ((color >> 16) & 0xFF) * intensity_factor;
 	green = ((color >> 8) & 0xFF) * intensity_factor;

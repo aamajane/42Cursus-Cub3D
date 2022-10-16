@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:35:14 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 20:51:31 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 21:37:23 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	render_celing(t_data *data, int x)
 	int		index;
 	int		y;
 
-	intensity_factor = 256;
+	intensity_factor = INTENSITY;
 	ceiling_color = 0x003B3B3B;
 	y = 0;
 	while (y < data->column[x].top_y)
@@ -107,7 +107,7 @@ void	render_floor(t_data *data, int x)
 	int		index;
 	int		y;
 
-	intensity_factor = WIN_HEIGHT - data->column[x].bottom_y + 256;
+	intensity_factor = WIN_HEIGHT - data->column[x].bottom_y + INTENSITY;
 	floor_color = 0x003B3B3B;
 	y = data->column[x].bottom_y;
 	while (y < WIN_HEIGHT)

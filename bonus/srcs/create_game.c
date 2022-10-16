@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 15:17:39 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 21:21:09 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 21:45:26 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	create_game(t_data *data)
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!data->win)
 		exit(puterror("Failed to create window"));
+	ft_afplay(MUSIC, &data->pid_music);
 	create_images(data);
 	images_path(data);
 	init_all_images(data, TILE_SIZE);
@@ -27,7 +28,6 @@ void	create_game(t_data *data)
 	player_data(&data->player, data->elm.map);
 	enemy_data(&data->enemy.gsprite, data->elm.map);
 	random_wall(&data->elm.map);
-	ft_afplay(MUSIC, &data->pid_music);
 	mlx_hook(data->win, 2, 0, key_press, data);
 	mlx_hook(data->win, 3, 0, key_release, data);
 	mlx_hook(data->win, 6, 0, mouse_move, data);

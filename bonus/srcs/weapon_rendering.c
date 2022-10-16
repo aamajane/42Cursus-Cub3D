@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 23:28:53 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 21:10:54 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 22:15:07 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	render_weapon(t_data *data)
 {
 	if (!data->weapon.bullets)
 	{
+		ft_afplay(RELOAD, &data->pid_reload);
 		data->weapon.render_reloading = 1;
 		data->weapon.render_shooting = 0;
+		data->weapon.bullets = NUM_BULLETS;
 	}
 	if (!data->weapon.render_shooting && !data->weapon.render_reloading)
 		render_weapon_frames(data, data->weapon.holding);
@@ -83,7 +85,7 @@ void	weapon_reloading_timer(t_data *data)
 		{
 			data->weapon.reloading_index = 0;
 			data->weapon.render_reloading = 0;
-			data->weapon.bullets = NUM_BULLETS;
+			kill(data->pid_reload, SIGKILL);
 		}
 		data->weapon.reloading_timer = 0;
 	}

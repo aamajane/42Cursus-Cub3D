@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 23:02:26 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 03:06:21 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:19:16 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	player_data(t_player *player, char **map)
 	player->rot_angle = degree_to_radian(start_angle);
 	player->fov_angle = degree_to_radian(60);
 	player->rot_speed = degree_to_radian(2);
-	player->mov_speed = 3;
+	player->mov_speed = 4;
 	player->rot_direction = 0;
 	player->mov_direction = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 16:42:21 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:20:06 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@
 # define ESC_KEY		53
 # define KEY_SHIFT		257
 
-# define SHIFT_MODE		6
-# define NORMAL_MODE 	2
+# define SHIFT_MODE		8
+# define NORMAL_MODE 	4
 
 # define EPSILON		0.3
 

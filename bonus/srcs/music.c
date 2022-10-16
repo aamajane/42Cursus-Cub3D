@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 20:01:25 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/10/16 20:08:24 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:16:37 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	render_menu(t_data *data)
 	x_pos = 1050;
 	y_pos = 0;
 	color = 0x00FFFFFF;
-	mlx_string_put(data->mlx, data->win, x_pos, y_pos += 20, color, \
+	mlx_string_put(data->mlx, data->win, x_pos, y_pos, color, \
 					"Move : [W] [A] [S] [D]");
 	mlx_string_put(data->mlx, data->win, x_pos, y_pos += 20, color, \
 					"Turn : [<-] [->]");

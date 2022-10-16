@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 20:20:06 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 21:17:48 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@
 # define D_KEY			2
 # define A_KEY			0
 # define X_KEY			7
-# define KEY_R			15
-# define KEY_C			8
 # define UP_KEY			126
 # define DOWN_KEY		125
 # define RIGHI_KEY		124
@@ -66,7 +64,7 @@
 # define EPSILON		0.3
 
 # define MUSIC			"./bonus/assets/sound/doom.mp3"
-# define GUN			"./bonus/assets/sound/gun.mp3"
+# define GUNSHOT		"./bonus/assets/sound/gun.mp3"
 
 typedef enum e_name
 {
@@ -80,12 +78,6 @@ typedef enum e_name
 	light_4 = 103,
 	door = 200,
 }			t_name;
-
-typedef enum e_music
-{
-	SONG,
-	GUN_SHOT
-}			t_music;
 
 typedef struct s_r
 {
@@ -271,10 +263,8 @@ typedef struct s_data
 	t_ray		rays[NUM_RAYS];
 	t_column	column[NUM_RAYS];
 	double		dist_proj_plane;
-	t_music		music;
-	char		**afplay;
-	int			pid;
-	int			pid_gun;
+	int			pid_music;
+	int			pid_gunshot;
 }				t_data;
 
 // checker.c
@@ -420,9 +410,7 @@ char	*get_line(char **stock, char **line);
 void	get_free(char **str);
 
 // music.c
-void	ft_afplay(t_data *data);
-void	ft_afplay_gun(t_data *data);
+void	ft_afplay(char *sound, int *pid);
 void	render_menu(t_data *data);
-void	ft_afplay_global(t_data *data);
 
 #endif

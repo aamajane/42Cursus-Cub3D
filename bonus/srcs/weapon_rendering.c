@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 23:28:53 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 17:22:57 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 21:10:54 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	weapon_shooting_timer(t_data *data)
 			data->weapon.shooting_index = 0;
 			data->weapon.render_shooting = 0;
 			data->weapon.bullets--;
-			kill(data->pid_gun, SIGKILL);
+			kill(data->pid_gunshot, SIGKILL);
 		}
 		data->weapon.shooting_timer = 0;
 	}

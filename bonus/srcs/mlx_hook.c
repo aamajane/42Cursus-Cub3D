@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:55:44 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 17:03:10 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 21:18:54 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,12 @@ int	key_press(int keycode, t_data *data)
 
 void	key_press_2(int keycode, t_data *data)
 {
-	if (keycode == KEY_R)
-	{
-		data->music = SONG;
-		data->afplay[1] = MUSIC;
-		if (data->pid == 0)
-			ft_afplay(data);
-	}
-	else if (keycode == KEY_C)
-	{
-		if (data->pid)
-			kill(data->pid, SIGKILL);
-	}
-	else if (keycode == KEY_SHIFT)
+	if (keycode == KEY_SHIFT)
 		data->player.mov_speed = SHIFT_MODE;
 	else if (keycode == X_KEY && !data->weapon.render_shooting && \
 			!data->weapon.render_reloading)
 	{
-		data->music = GUN_SHOT;
-		data->afplay[1] = GUN;
-		ft_afplay_gun(data);
+		ft_afplay(GUNSHOT, &data->pid_gunshot);
 		data->weapon.render_shooting = 1;
 	}
 }
@@ -74,8 +60,6 @@ int	key_release(int keycode, t_data *data)
 		data->player.rot_direction = 0;
 	else if (keycode == KEY_SHIFT)
 		data->player.mov_speed = NORMAL_MODE;
-	else if (keycode == KEY_C)
-		data->pid = 0;
 	return (0);
 }
 
@@ -89,8 +73,7 @@ int	mouse_move(int x, int y, t_data *data)
 
 int	close_win(t_data *data)
 {
-	if (data->pid)
-		kill(data->pid, SIGKILL);
+	kill(data->pid_music, SIGKILL);
 	mlx_destroy_window(data->mlx, data->win);
 	exit(0);
 }

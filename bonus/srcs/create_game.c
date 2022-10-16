@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 15:17:39 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 16:41:14 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 21:21:09 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	create_game(t_data *data)
 	images_path(data);
 	init_all_images(data, TILE_SIZE);
 	init_variables(data);
-	ft_afplay_global(data);
 	player_data(&data->player, data->elm.map);
 	enemy_data(&data->enemy.gsprite, data->elm.map);
 	random_wall(&data->elm.map);
+	ft_afplay(MUSIC, &data->pid_music);
 	mlx_hook(data->win, 2, 0, key_press, data);
 	mlx_hook(data->win, 3, 0, key_release, data);
 	mlx_hook(data->win, 6, 0, mouse_move, data);
@@ -78,8 +78,6 @@ void	init_variables(t_data *data)
 	data->enemy.dying_index = 0;
 	data->enemy.dying_timer = 0;
 	data->enemy.dead_num = -1;
-	data->afplay = (char **)malloc(sizeof(char *) * 3);
-	data->pid = 0;
 }
 
 void	random_wall(char ***map)

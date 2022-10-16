@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 21:00:29 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/10 22:59:12 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:22:48 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void	player_update(t_data *data)
 {
-	if (data->player.mov_direction != 0)
-		move_player(data);
-	if (data->player.rot_direction != 0)
-		rotate_player(data);
+	if (!data->weapon.render_shooting && data->enemy.dead_num == -1)
+	{
+		if (data->player.mov_direction != 0)
+			move_player(data);
+		if (data->player.rot_direction != 0)
+			rotate_player(data);
+	}
 }
 
 void	move_player(t_data *data)

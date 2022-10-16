@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 16:13:21 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:18:51 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,8 @@ int		map_is_valid(char **map, int i, int j);
 int		is_color(char *str, int **count);
 int		is_direction(char *str, int **count);
 int		*copy_rgb_color(char **tab);
+int		commas_number(char *str);
+int		create_trgb(int transparency, int red, int green, int blue);
 
 // utils_map.c
 int		map_width(char **map);
@@ -206,8 +208,6 @@ int		is_inside_map(t_data *data, double x, double y);
 double	distance_between_points(double x1, double y1, double x2, double y2);
 double	degree_to_radian(double angle);
 void	normalize_angle(double *angle);
-int		create_trgb(int transparency, int red, int green, int blue);
-int		commas_number(char *str);
 
 // get_next_line.c
 char	*get_next_line(int fd);

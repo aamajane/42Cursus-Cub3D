@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 16:07:23 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 16:07:32 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 16:18:06 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,19 @@ int	is_direction(char *str, int **count)
 	return (-1);
 }
 
+int	commas_number(char *str)
+{
+	int	commas_num;
+	int	i;
+
+	commas_num = 0;
+	i = -1;
+	while (str[++i])
+		if (str[i] == ',')
+			commas_num++;
+	return (commas_num);
+}
+
 int	*copy_rgb_color(char **tab)
 {
 	int	*rgb;
@@ -66,4 +79,16 @@ int	*copy_rgb_color(char **tab)
 			exit(puterror("Invalid color"));
 	}
 	return (rgb);
+}
+
+int	create_trgb(int transparency, int red, int green, int blue)
+{
+	int	trgb;
+
+	trgb = 0;
+	trgb += transparency << 24;
+	trgb += red << 16;
+	trgb += green << 8;
+	trgb += blue;
+	return (trgb);
 }

@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/13 16:00:40 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:59:48 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@
 # define SOUTH		1
 # define EAST		2
 # define WEST		3
-
-typedef struct s_var
-{
-	char	**tab;
-	int		*rgb;
-	int		i;
-	int		j;
-}				t_var;
 
 typedef struct s_column
 {
@@ -131,8 +123,8 @@ typedef struct s_data
 
 // checker.c
 void	checker(t_elm *elm, char *arg);
-void	check_elements(t_elm *elm, t_var *var, char **tmp_elm);
-int		*check_color(t_var *var, char *str);
+void	check_elements(t_elm *elm, char **tmp_elm);
+int		*check_color(char *str);
 char	*check_path(char *str);
 void	check_map(char **map);
 

@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:42:50 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/15 01:31:24 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 15:59:42 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	checker(t_elm *elm, char *arg)
 {
 	char	**tmp_elm;
 	char	**file;
-	t_var	var;
 
 	if (ft_strncmp(arg + ft_strlen(arg) - 4, ".cub", 4) || ft_strlen(arg) <= 4)
 		exit(puterror("file extension must be .cub"));
@@ -25,7 +24,7 @@ void	checker(t_elm *elm, char *arg)
 	free_double_pointer(file);
 	elm->path = (char **)malloc(sizeof(char *) * 4);
 	elm->rgb = (int **)malloc(sizeof(int *) * 2);
-	check_elements(elm, &var, tmp_elm);
+	check_elements(elm, tmp_elm);
 	free_double_pointer(tmp_elm);
 	elm->floor_color = \
 				create_trgb(0, elm->rgb[0][0], elm->rgb[0][1], elm->rgb[0][2]);
@@ -33,7 +32,7 @@ void	checker(t_elm *elm, char *arg)
 				create_trgb(0, elm->rgb[1][0], elm->rgb[1][1], elm->rgb[1][2]);
 }
 
-void	check_elements(t_elm *elm, t_var *var, char **tmp_elm)
+void	check_elements(t_elm *elm, char **tmp_elm)
 {
 	int	*count;
 	int	i;
@@ -49,7 +48,7 @@ void	check_elements(t_elm *elm, t_var *var, char **tmp_elm)
 		color = is_color(tmp_elm[i] + j, &count);
 		direction = is_direction(tmp_elm[i] + j, &count);
 		if (color >= 0)
-			elm->rgb[color] = check_color(var, tmp_elm[i] + j + 2);
+			elm->rgb[color] = check_color(tmp_elm[i] + j + 2);
 		else if (direction >= 0)
 			elm->path[direction] = check_path(tmp_elm[i] + j + 3);
 		else
@@ -62,27 +61,32 @@ void	check_elements(t_elm *elm, t_var *var, char **tmp_elm)
 	check_map(elm->map);
 }
 
-int	*check_color(t_var *var, char *str)
+int	*check_color(char *str)
 {
-	skip_spaces(str, &var->i);
-	if (commas_number(str + var->i) != 2)
+	char	**tab;
+	int		*rgb;
+	int		i;
+	int		j;
+
+	skip_spaces(str, &i);
+	if (commas_number(str + i) != 2)
 		exit(puterror("Invalid color format"));
-	var->tab = ft_split(str + var->i, ',');
-	var->i = -1;
-	while (var->tab[++var->i])
+	tab = ft_split(str + i, ',');
+	i = -1;
+	while (tab[++i])
 	{
-		var->j = 0;
-		if (ft_strlen(var->tab[var->i]) > 3)
+		j = 0;
+		if (ft_strlen(tab[i]) > 3)
 			exit(puterror("Invalid color"));
-		while (var->tab[var->i][var->j])
-			if (!ft_isdigit(var->tab[var->i][var->j++]))
+		while (tab[i][j])
+			if (!ft_isdigit(tab[i][j++]))
 				exit(puterror("Invalid color"));
 	}
-	if (var->i != 3)
+	if (i != 3)
 		exit(puterror("Invalid color"));
-	var->rgb = copy_rgb_color(var->tab);
-	free_double_pointer(var->tab);
-	return (var->rgb);
+	rgb = copy_rgb_color(tab);
+	free_double_pointer(tab);
+	return (rgb);
 }
 
 char	*check_path(char *str)
@@ -127,7 +131,9 @@ void	check_map(char **map)
 			if ((map[i][j] == '0' || is_player(map[i][j])) && \
 				(!i || !map[i + 1] || !j || !map[i][j + 1] || \
 				map[i][j + 1] == ' ' || (j && map[i][j - 1] == ' ') || \
-				map[i + 1][j] == ' ' || (i && map[i - 1][j] == ' ')))
+				map[i + 1][j] == ' ' || (i && map[i - 1][j] == ' ') || \
+				!map[i][j + 1] || (j && !map[i][j - 1]) || \
+				!map[i + 1][j] || (i && !map[i - 1][j])))
 				exit(puterror("Invalid map"));
 		}
 	}

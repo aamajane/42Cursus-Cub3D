@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 02:43:37 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 17:01:00 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 20:34:40 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ void	render_enemy(t_data *data, int i)
 	else
 		sprite_rendering(data, data->enemy.gsprite.visible[i], \
 						data->enemy.dying[data->enemy.dying_index]);
-	if (data->enemy.gsprite.visible[i]->left_x < (WIN_WIDTH / 2) && \
-		data->enemy.gsprite.visible[i]->right_x > (WIN_WIDTH / 2) && \
+	if (data->enemy.gsprite.visible[i]->left_x + \
+		(data->enemy.gsprite.visible[i]->size / 3) < (WIN_WIDTH / 2) && \
+		data->enemy.gsprite.visible[i]->right_x - \
+		(data->enemy.gsprite.visible[i]->size / 3) > (WIN_WIDTH / 2) && \
 		data->enemy.gsprite.visible[i]->distance < 5 * TILE_SIZE && \
 		data->enemy.gsprite.visible[i]->on_target)
 	{

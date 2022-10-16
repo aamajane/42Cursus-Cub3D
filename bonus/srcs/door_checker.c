@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 16:33:58 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/12 22:04:21 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 22:54:30 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@ void	check_door_near_player(t_data *data)
 		data->rays[i].angle = ray_angle;
 		door_horz_intercept(&horizontal, data, ray_angle);
 		door_vert_intercept(&vertical, data, ray_angle);
+		if (data->door.render == 1)
+			ft_afplay(DOOR, &data->pid_door);
 	}
 	if (data->door.is_open && \
 		distance_between_points(data->player.x, data->player.y, \
-		data->door.xintercept, data->door.yintercept) > 1.5 * TILE_SIZE)
+		data->door.xintercept, data->door.yintercept) > 2 * TILE_SIZE)
 	{
+		ft_afplay(DOOR, &data->pid_door);
 		data->door.is_open = 0;
 		data->door.render = 2;
 	}

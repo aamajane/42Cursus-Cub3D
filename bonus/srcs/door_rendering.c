@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 23:02:58 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/14 15:53:25 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 22:52:43 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ void	render_door(t_data *data)
 
 void	door_opening_timer(t_data *data)
 {
-	if (data->door.timer > 1)
+	if (data->door.timer > 5)
 	{
 		data->door.index++;
 		if (data->door.index == NUM_OP_DOORS)
 		{
 			data->door.index--;
 			data->door.render = 0;
+			kill(data->pid_door, SIGKILL);
 		}
 		data->door.timer = 0;
 	}
@@ -54,7 +55,7 @@ void	door_opening_timer(t_data *data)
 
 void	door_closing_timer(t_data *data)
 {
-	if (data->door.timer > 1)
+	if (data->door.timer > 6)
 	{
 		data->door.index--;
 		if (data->door.index == -1)
@@ -63,6 +64,7 @@ void	door_closing_timer(t_data *data)
 			data->door.render = 0;
 			data->elm.map[(int)floor(data->door.yintercept / TILE_SIZE)] \
 					[(int)floor(data->door.xintercept / TILE_SIZE)] = 'd';
+			kill(data->pid_door, SIGKILL);
 		}
 		data->door.timer = 0;
 	}

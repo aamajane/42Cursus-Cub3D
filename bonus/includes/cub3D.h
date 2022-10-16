@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 22:19:10 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 22:26:39 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@
 # define MUSIC			"./bonus/assets/sound/doom.mp3"
 # define GUNSHOT		"./bonus/assets/sound/gunshot.mp3"
 # define RELOAD			"./bonus/assets/sound/reload.mp3"
+# define DOOR			"./bonus/assets/sound/door.mp3"
 
 typedef enum e_name
 {
@@ -268,6 +269,7 @@ typedef struct s_data
 	int			pid_music;
 	int			pid_gunshot;
 	int			pid_reload;
+	int			pid_door;
 }				t_data;
 
 // checker.c

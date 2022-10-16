@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 21:00:29 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 17:22:48 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/16 22:43:32 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	player_update(t_data *data)
 {
-	if (!data->weapon.render_shooting && data->enemy.dead_num == -1)
+	if (!data->weapon.render_shooting && data->enemy.dead_num == -1 && \
+		data->door.render != 1)
 	{
 		if (data->player.mov_direction != 0)
 			move_player(data);

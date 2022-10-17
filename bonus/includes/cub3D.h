@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/18 00:28:47 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/18 00:33:27 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <math.h>
 # include <mlx.h>
 # include <signal.h>
-# include <stdbool.h>
 # include <sys/time.h>
 
 # define WIN_WIDTH		1280

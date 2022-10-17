@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 15:17:39 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/17 22:52:21 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/18 00:01:50 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	create_game(t_data *data)
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!data->win)
 		exit(puterror("Failed to create window"));
-	ft_afplay(MUSIC, &data->pid_music);
+	data->start_time = get_time();
+	ft_afplay(BACKGROUND, &data->pid_background);
 	create_images(data);
 	images_path(data);
 	init_all_images(data, TILE_SIZE);
@@ -95,4 +96,12 @@ void	random_wall(char ***map)
 				(*map)[i][j] = (rand() % (MAX_WALL_NUM + 1 - MIN_WALL_NUM) + \
 								MIN_WALL_NUM) + '0';
 	}	
+}
+
+long	get_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }

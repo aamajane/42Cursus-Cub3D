@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/17 23:02:22 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/18 00:28:47 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <mlx.h>
 # include <signal.h>
 # include <stdbool.h>
+# include <sys/time.h>
 
 # define WIN_WIDTH		1280
 # define WIN_HEIGHT 	720
@@ -64,7 +65,9 @@
 # define INTENSITY		500
 # define EPSILON		0.3
 
-# define MUSIC			"./bonus/assets/sound/doom.mp3"
+# define BG_MUSIC_LEN	65500
+
+# define BACKGROUND		"./bonus/assets/sound/background.mp3"
 # define GUNSHOT		"./bonus/assets/sound/gunshot.mp3"
 # define RELOAD			"./bonus/assets/sound/reload.mp3"
 # define BULLET			"./bonus/assets/sound/bullet.mp3"
@@ -268,11 +271,13 @@ typedef struct s_data
 	t_ray		rays[NUM_RAYS];
 	t_column	column[NUM_RAYS];
 	double		dist_proj_plane;
-	int			pid_music;
+	int			pid_background;
 	int			pid_gunshot;
 	int			pid_bullet;
 	int			pid_reload;
 	int			pid_door;
+	long		start_time;
+	long		current_time;
 }				t_data;
 
 // checker.c
@@ -286,6 +291,7 @@ void	create_game(t_data *data);
 void	create_images(t_data *data);
 void	init_variables(t_data *data);
 void	random_wall(char ***map);
+long	get_time(void);
 
 // images_path.c
 void	images_path(t_data *data);

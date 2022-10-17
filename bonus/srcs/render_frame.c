@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 16:35:14 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 21:37:23 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/18 00:03:04 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 
 int	render_frame(t_data *data)
 {
+	data->current_time = get_time();
+	if (data->current_time - data->start_time > BG_MUSIC_LEN)
+	{
+		data->start_time = get_time();
+		if (data->pid_background)
+			kill(data->pid_background, SIGKILL);
+		ft_afplay(BACKGROUND, &data->pid_background);
+	}
 	player_update(data);
 	raycasting(data);
 	projection(data);

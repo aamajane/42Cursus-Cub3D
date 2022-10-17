@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 20:42:50 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 16:13:37 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/17 21:42:21 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	check_elements(t_elm *elm, char **tmp_elm)
 	int	color;
 	int	direction;
 
-	count = (int *)calloc(6, sizeof(int));
+	count = (int *)ft_calloc(6, sizeof(int));
 	i = -1;
 	while (tmp_elm[++i])
 	{

@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 23:28:53 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 22:15:07 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/17 23:00:27 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	render_weapon(t_data *data)
 		render_weapon_frames(data, \
 						data->weapon.shooting[data->weapon.shooting_index]);
 		weapon_shooting_timer(data);
+		bullet_timer(data);
 	}
 	if (data->weapon.render_reloading && !data->weapon.render_shooting)
 	{
@@ -57,39 +58,6 @@ void	render_weapon_frames(t_data *data, t_img img)
 		}
 		r.win_x++;
 	}
-}
-
-void	weapon_shooting_timer(t_data *data)
-{
-	if (data->weapon.shooting_timer > 4)
-	{
-		data->weapon.shooting_index++;
-		if (data->weapon.shooting_index == NUM_SHOOTING)
-		{
-			data->weapon.shooting_index = 0;
-			data->weapon.render_shooting = 0;
-			data->weapon.bullets--;
-			kill(data->pid_gunshot, SIGKILL);
-		}
-		data->weapon.shooting_timer = 0;
-	}
-	data->weapon.shooting_timer++;
-}
-
-void	weapon_reloading_timer(t_data *data)
-{
-	if (data->weapon.reloading_timer > 4)
-	{
-		data->weapon.reloading_index++;
-		if (data->weapon.reloading_index == NUM_RELOADING)
-		{
-			data->weapon.reloading_index = 0;
-			data->weapon.render_reloading = 0;
-			kill(data->pid_reload, SIGKILL);
-		}
-		data->weapon.reloading_timer = 0;
-	}
-	data->weapon.reloading_timer++;
 }
 
 void	render_target(t_data *data)

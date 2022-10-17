@@ -6,7 +6,7 @@
 #    By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 15:10:36 by aamajane          #+#    #+#              #
-#    Updated: 2022/10/16 20:53:17 by aamajane         ###   ########.fr        #
+#    Updated: 2022/10/17 23:00:43 by aamajane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRCS_B	=	bonus/srcs/main.c \
 			bonus/srcs/door_checker.c \
 			bonus/srcs/door_rendering.c \
 			bonus/srcs/weapon_rendering.c \
+			bonus/srcs/weapon_timer.c \
 			bonus/srcs/enemy_rendering.c \
 			bonus/srcs/minimap.c \
 			bonus/srcs/utils_map.c \

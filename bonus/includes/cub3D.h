@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 22:26:39 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/17 23:02:22 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@
 # define MUSIC			"./bonus/assets/sound/doom.mp3"
 # define GUNSHOT		"./bonus/assets/sound/gunshot.mp3"
 # define RELOAD			"./bonus/assets/sound/reload.mp3"
+# define BULLET			"./bonus/assets/sound/bullet.mp3"
 # define DOOR			"./bonus/assets/sound/door.mp3"
 
 typedef enum e_name
@@ -224,6 +225,7 @@ typedef struct s_weapon
 	int		reloading_index;
 	int		shooting_timer;
 	int		reloading_timer;
+	int		bullet_timer;
 	int		target;
 }				t_weapon;
 
@@ -268,6 +270,7 @@ typedef struct s_data
 	double		dist_proj_plane;
 	int			pid_music;
 	int			pid_gunshot;
+	int			pid_bullet;
 	int			pid_reload;
 	int			pid_door;
 }				t_data;
@@ -373,9 +376,12 @@ void	sprite_drawing(t_data *data, t_sprite *sprite, t_img sprite_img, int x);
 // weapon_rendering.c
 void	render_weapon(t_data *data);
 void	render_weapon_frames(t_data *data, t_img img);
+void	render_target(t_data *data);
+
+// weapon_timer.c
 void	weapon_shooting_timer(t_data *data);
 void	weapon_reloading_timer(t_data *data);
-void	render_target(t_data *data);
+void	bullet_timer(t_data *data);
 
 // minimap.c
 void	render_minimap(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:55:44 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/16 22:12:54 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/17 22:54:54 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int	mouse_move(int x, int y, t_data *data)
 
 int	close_win(t_data *data)
 {
-	kill(data->pid_music, SIGKILL);
+	if (data->pid_music)
+		kill(data->pid_music, SIGKILL);
 	mlx_destroy_window(data->mlx, data->win);
 	exit(0);
 }

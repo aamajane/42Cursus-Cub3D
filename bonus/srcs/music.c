@@ -6,13 +6,13 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 20:01:25 by ablaamim          #+#    #+#             */
-/*   Updated: 2022/10/16 21:21:23 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/18 02:10:00 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	ft_afplay(char *sound, int *pid)
+void	ft_afplay(char *sound, pid_t *pid)
 {
 	char	*afplay[3];
 

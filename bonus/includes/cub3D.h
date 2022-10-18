@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/18 02:06:12 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/18 02:10:10 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -431,7 +431,7 @@ char	*get_line(char **stock, char **line);
 void	get_free(char **str);
 
 // music.c
-void	ft_afplay(char *sound, int *pid);
+void	ft_afplay(char *sound, pid_t *pid);
 void	render_menu(t_data *data);
 
 #endif

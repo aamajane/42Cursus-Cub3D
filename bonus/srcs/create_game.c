@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 15:17:39 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/18 00:01:50 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/18 01:38:26 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	create_game(t_data *data)
 	if (!data->win)
 		exit(puterror("Failed to create window"));
 	data->start_time = get_time();
-	ft_afplay(BACKGROUND, &data->pid_background);
+	ft_afplay(BACKGROUND, &data->pid.background);
 	create_images(data);
 	images_path(data);
 	init_all_images(data, TILE_SIZE);

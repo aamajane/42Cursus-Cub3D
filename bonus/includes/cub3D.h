@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/18 00:33:27 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/18 01:40:02 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,11 +251,21 @@ typedef struct s_elm
 	int		map_height;
 }				t_elm;
 
+typedef struct s_pid
+{
+	int	background;
+	int	gunshot;
+	int	bullet;
+	int	reload;
+	int	door;
+}				t_pid;
+
 typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
 	t_name		name;
+	t_pid		pid;
 	t_elm		elm;
 	t_img		main_img;
 	t_img		minimap;
@@ -270,11 +280,6 @@ typedef struct s_data
 	t_ray		rays[NUM_RAYS];
 	t_column	column[NUM_RAYS];
 	double		dist_proj_plane;
-	int			pid_background;
-	int			pid_gunshot;
-	int			pid_bullet;
-	int			pid_reload;
-	int			pid_door;
 	long		start_time;
 	long		current_time;
 }				t_data;

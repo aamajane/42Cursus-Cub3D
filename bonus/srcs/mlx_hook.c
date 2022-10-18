@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:55:44 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/17 23:35:57 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/18 01:39:03 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	key_press_2(int keycode, t_data *data)
 	else if (keycode == X_KEY && !data->weapon.render_shooting && \
 			!data->weapon.render_reloading)
 	{
-		ft_afplay(GUNSHOT, &data->pid_gunshot);
+		ft_afplay(GUNSHOT, &data->pid.gunshot);
 		data->weapon.render_shooting = 1;
 	}
 }
@@ -73,8 +73,8 @@ int	mouse_move(int x, int y, t_data *data)
 
 int	close_win(t_data *data)
 {
-	if (data->pid_background)
-		kill(data->pid_background, SIGKILL);
+	if (data->pid.background)
+		kill(data->pid.background, SIGKILL);
 	mlx_destroy_window(data->mlx, data->win);
 	exit(0);
 }

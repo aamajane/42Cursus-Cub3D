@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 23:28:53 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/17 23:00:27 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/18 01:39:24 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	render_weapon(t_data *data)
 {
 	if (!data->weapon.bullets)
 	{
-		ft_afplay(RELOAD, &data->pid_reload);
+		ft_afplay(RELOAD, &data->pid.reload);
 		data->weapon.render_reloading = 1;
 		data->weapon.render_shooting = 0;
 		data->weapon.bullets = NUM_BULLETS;

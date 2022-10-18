@@ -6,7 +6,7 @@
 /*   By: aamajane <aamajane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 16:08:13 by aamajane          #+#    #+#             */
-/*   Updated: 2022/10/18 01:40:02 by aamajane         ###   ########.fr       */
+/*   Updated: 2022/10/18 02:06:12 by aamajane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,11 +253,11 @@ typedef struct s_elm
 
 typedef struct s_pid
 {
-	int	background;
-	int	gunshot;
-	int	bullet;
-	int	reload;
-	int	door;
+	pid_t	background;
+	pid_t	gunshot;
+	pid_t	bullet;
+	pid_t	reload;
+	pid_t	door;
 }				t_pid;
 
 typedef struct s_data
